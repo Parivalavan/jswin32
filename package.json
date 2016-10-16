@@ -1,6 +1,6 @@
 {
   "name": "jswin32",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "description": "javascript ffi interface for windows api ",
   "scripts": {},

@@ -4857,7 +4857,7 @@ function test_GetComputerNameA()
 
 	var lpBuffer = new Buffer( nSize * 1 );
 
-	var xx = kernel32.GetComputerNameA( lpBuffer , lpnSize );
+	kernel32.GetComputerNameA( lpBuffer , lpnSize );
 
 	var strName = lpBuffer.toString();
 		
@@ -4875,7 +4875,7 @@ function test_GetComputerNameW()
 
 	var lpBuffer = new Buffer( nSize * 2 );
 
-	var xx = kernel32.GetComputerNameW( lpBuffer , lpnSize );
+	kernel32.GetComputerNameW( lpBuffer , lpnSize );
 
 	var strName = iconv.decode( lpBuffer , 'ucs2' );
 		
