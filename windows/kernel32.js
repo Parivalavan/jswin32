@@ -612,8 +612,18 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	// int __stdcall CreateFileTransactedW();
 	// "CreateFileTransactedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
-	// int __stdcall CreateFileW();
-	// "CreateFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	 "CreateFileW" :   [ wtypes.HANDLE ,
+	 	[
+		  wtypes.LPCWSTR ,  				// __in     LPCWSTR  lpFileName,
+		  wtypes.DWORD ,  					// __in     DWORD  dwDesiredAccess,
+		  wtypes.DWORD ,  					// __in     DWORD  dwShareMode,
+		  wtypes.LPSECURITY_ATTRIBUTES ,  	// __in_opt LPSECURITY_ATTRIBUTES  lpSecurityAttributes,
+		  wtypes.DWORD ,  					// __in     DWORD  dwCreationDisposition,
+		  wtypes.DWORD ,  					// __in     DWORD  dwFlagsAndAttributes,
+		  wtypes.HANDLE ,  					// __in_opt  HANDLE  hTemplateFile,
+		] , 
+		{abi : ffi.FFI_STDCALL } 
+	] ,
 
 	// int __stdcall CreateHardLinkA();
 	// "CreateHardLinkA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
@@ -1443,17 +1453,17 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	// int __stdcall GetCompressedFileSizeW();
 	// "GetCompressedFileSizeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
-	// int __stdcall GetComputerNameA();
-	// "GetComputerNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// BOOL __stdcall GetComputerNameA();
+	 "GetComputerNameA" :   [ wtypes.BOOL , [ wtypes.LPSTR , wtypes.LPDWORD ] , {abi : ffi.FFI_STDCALL } ] ,
 
-	// int __stdcall GetComputerNameExA();
+	// BOOL __stdcall GetComputerNameExA();
 	// "GetComputerNameExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
 	// int __stdcall GetComputerNameExW();
 	// "GetComputerNameExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
 	// BOOL __stdcall GetComputerNameW(__out LPWSTR lpBuffer , __inout LPDWORD lpnSize);
-	 "GetComputerNameW" :   [ wtypes.BOOL , [ wtypes.WCHAR_Arary , wtypes.LPDWORD ] , {abi : ffi.FFI_STDCALL } ] ,
+	 "GetComputerNameW" :   [ wtypes.BOOL , [ wtypes.LPWSTR , wtypes.LPDWORD ] , {abi : ffi.FFI_STDCALL } ] ,
 
 	// int __stdcall GetConsoleAliasA();
 	// "GetConsoleAliasA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
@@ -4836,20 +4846,39 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 });
 module.exports = kernel32;
 
+// test out char*
+function test_GetComputerNameA()
+{
+	var lpnSize = ref.alloc( wtypes.DWORD , 0 );
+		
+	kernel32.GetComputerNameA( ref.NULL , lpnSize );
+		
+	var nSize = lpnSize.deref();
 
-// test wchar*
-/*
-var lpnSize = ref.alloc( wtypes.DWORD , 0 );
+	var lpBuffer = new Buffer( nSize * 1 );
 
-kernel32.GetComputerNameW( ref.NULL , lpnSize );
+	var xx = kernel32.GetComputerNameA( lpBuffer , lpnSize );
 
-var nSize = lpnSize.deref();
+	var strName = lpBuffer.toString();
+		
+	printf( strName );
+}
 
-var lpBuffer = new Buffer( nSize * 2 );
+// test out wchar*
+function test_GetComputerNameW()
+{
+	var lpnSize = ref.alloc( wtypes.DWORD , 0 );
+		
+	kernel32.GetComputerNameW( ref.NULL , lpnSize );
+		
+	var nSize = lpnSize.deref();
 
-var xx = kernel32.GetComputerNameW( lpBuffer , lpnSize );
+	var lpBuffer = new Buffer( nSize * 2 );
 
-var strName = iconv.decode( lpBuffer , 'ucs2' );
+	var xx = kernel32.GetComputerNameW( lpBuffer , lpnSize );
 
-printf( strName );
-*/
+	var strName = iconv.decode( lpBuffer , 'ucs2' );
+		
+	printf( strName );
+}
+		
