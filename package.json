@@ -29,15 +29,12 @@
   },
   "dependencies": {
     "cprintf": "^1.0.14",
+    "ffi": "^2.1.0",
     "iconv-lite": "^0.4.13",
     "ref": "^1.3.2",
     "ref-wchar": "^1.0.2",
     "wtypes": "^1.0.8"
   },
-  "devDependencies": {
-    "cprintf": "^1.0.13",
-    "ffi": "^2.1.0",
-    "wtypes": "^1.0.3"
-  },
+  "devDependencies": {},
   "license": "MIT"
 }
