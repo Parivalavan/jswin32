@@ -6,7 +6,6 @@ const printf = require('cprintf').printf;
 const sprintf = require('cprintf').sprintf;
 const wtypes = require('wtypes');
 const ref = require('ref');
-const wchar_t = require('ref-wchar');
 const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
@@ -2578,5 +2577,3 @@ module.exports = advapi32;
 
 
 
-// exports
-module.exports = advapi32;

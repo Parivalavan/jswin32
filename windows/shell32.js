@@ -6,14 +6,11 @@ const printf = require('cprintf').printf;
 const sprintf = require('cprintf').sprintf;
 const wtypes = require('wtypes');
 const ref = require('ref');
-const wchar_t = require('ref-wchar');
 const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
 
 // init
-var shell32 = ffi.Library( 'shell32.dll' ,{} );
-
 var shell32 = ffi.Library( "shell32.dll" ,
 {
 	// int __stdcall AppCompat_RunDLLW();
@@ -1475,8 +1472,4 @@ var shell32 = ffi.Library( "shell32.dll" ,
 	// "WriteCabinetState" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
 });
-module.exports = shell32;
-
-
-// exports
 module.exports = shell32;

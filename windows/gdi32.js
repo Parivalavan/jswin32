@@ -6,14 +6,11 @@ const printf = require('cprintf').printf;
 const sprintf = require('cprintf').sprintf;
 const wtypes = require('wtypes');
 const ref = require('ref');
-const wchar_t = require('ref-wchar');
 const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
 
 // init
-var gdi32 = ffi.Library( 'gdi32.dll' ,{} );
-
 var gdi32 = ffi.Library( "gdi32.dll" ,
 {
 	// int __stdcall AbortDoc();
@@ -4702,6 +4699,3 @@ var gdi32 = ffi.Library( "gdi32.dll" ,
 });
 module.exports = gdi32;
 
-
-// exports
-module.exports = gdi32;
