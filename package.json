@@ -1,0 +1,40 @@
+{
+  "name": "jswin32",
+  "version": "1.0.0",
+  "private": false,
+  "description": "javascript ffi interface for windows api ",
+  "scripts": {},
+  "preferGlobal": false,
+  "bin": {},
+  "main": "index.js",
+  "keywords": [
+    "windows",
+    "api",
+    "win32api",
+    "ffi",
+    "win32"
+  ],
+  "author": {
+    "name": "TinySec",
+    "email": "root@tinysec.net",
+    "url": "http://tinysec.net"
+  },
+  "homepage": "https://github.com/tinysec/jswin32",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tinysec/jswin32.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tinysec/jswin32/issues"
+  },
+  "dependencies": {
+    "cprintf": "^1.0.14",
+    "wtypes": "^1.0.3"
+  },
+  "devDependencies": {
+    "cprintf": "^1.0.13",
+    "ffi": "^2.1.0",
+    "wtypes": "^1.0.3"
+  },
+  "license": "MIT"
+}
