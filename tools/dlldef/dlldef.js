@@ -110,17 +110,31 @@ function OnReadComplete( error , filedata)
         // remove repeat
         LineArray = _Unique( LineArray );
 
+        // var kernel32 = ffi.Library( "kernel32.dll" ,
+        strText = sprintf(
+                'var %s = ffi.Library( "%s.dll" ,\r\n' , 
+                strBaseName , strBaseName , LineArray[nLine] 
+        );
+        fs.appendFileSync( strResultFile , strText );
+
+        fs.appendFileSync( strResultFile , '{\r\n' );
+
         for ( nLine = 0; nLine < LineArray.length; nLine++ )
         {
-            strText = sprintf('// int __stdcall %s();\r\n' , LineArray[nLine] );
+            strText = sprintf('\t// int __stdcall %s();\r\n' , LineArray[nLine] );
 
-            strText += sprintf('// %s.%s = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];\r\n\r\n' ,
-                strBaseName ,
+            strText += sprintf(
+                '\t// "%s" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,\r\n\r\n' ,
                 LineArray[nLine] 
             );
 
             fs.appendFileSync( strResultFile , strText );
         }
+
+        fs.appendFileSync( strResultFile , '});\r\n' );
+
+        strText = sprintf( 'module.exports = %s;\r\n' , strBaseName  );
+        fs.appendFileSync( strResultFile , strText );
 
         printf('[+] done.\n');
         process.exit(0);
