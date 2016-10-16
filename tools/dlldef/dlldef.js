@@ -16,34 +16,78 @@ if ( process.argv.length <= 2 )
 }
 
 var strTxtFile = path.resolve( process.argv[2] );
+var strBaseName = path.basename( strTxtFile , '.txt' );
 
 var strResultFile = path.join( 
     path.dirname(strTxtFile) , 
-    sprintf( '../defs/%s.txt' , path.basename( strTxtFile ) )
+    sprintf( '../defs/%s.txt' , strBaseName )
 );
 
-fs.access( strTxtFile , function( error)
+fs.access( path.dirname(strResultFile)  , function(error)
 {
     if ( error )
     {
-        printf('[-] Not Found %s\n' , process.argv[2] );
-        process.exit(0);
-    }
+        fs.mkdirSync( path.dirname(strResultFile) );
+        Work();
+    } 
     else
     {
-        fs.readFile( strTxtFile , OnReadComplete );
+        Work();
     }
-});
+}
+);
 
-function _RemoveBlankLine( element , index , arr )
+function Work()
 {
-    return ( 0 !== element.trim().length );
+    try
+    {
+        fs.unlinkSync( strResultFile );
+    }
+    catch(error)
+    {
+
+    }
+    
+
+    fs.access( strTxtFile , function( error)
+    {
+        if ( error )
+        {
+            printf('[-] Not Found %s\n' , process.argv[2] );
+            process.exit(0);
+        }
+        else
+        {
+            fs.readFile( strTxtFile , OnReadComplete );
+        }
+    });
+}
+
+function _Unique( SrcArray )
+{
+    var nIndex = 0;
+    var NewArray = [];
+
+    do
+    {
+        for ( nIndex = 0; nIndex < SrcArray.length; nIndex++ )
+        {
+            if ( -1 === NewArray.indexOf( SrcArray[nIndex] ) )
+            {
+                NewArray.push( SrcArray[nIndex] );
+            }
+        }
+
+    }while(false);
+
+    return NewArray;
 }
 
 function OnReadComplete( error , filedata)
 {
     var LineArray = null;
     var nLine = 0;
+    var strText = '';
 
     do
     {
@@ -54,10 +98,33 @@ function OnReadComplete( error , filedata)
             break;
         }
         
-        LineArray = LineArray.filter(  _RemoveBlankLine );
+        LineArray = LineArray.filter(  
+            function( element , index , arr )
+            {
+                return ( 0 !== element.trim().length );
+            } 
+        );
 
-        printf( LineArray );
+        LineArray.sort();
 
+        // remove repeat
+        LineArray = _Unique( LineArray );
+
+        for ( nLine = 0; nLine < LineArray.length; nLine++ )
+        {
+            strText = sprintf('// int __stdcall %s();\r\n' , LineArray[nLine] );
+
+            strText += sprintf('// %s.%s = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];\r\n\r\n' ,
+                strBaseName ,
+                LineArray[nLine] 
+            );
+
+            fs.appendFileSync( strResultFile , strText );
+        }
+
+        printf('[+] done.\n');
+        process.exit(0);
+        
     }while(false);
 
     return 0;

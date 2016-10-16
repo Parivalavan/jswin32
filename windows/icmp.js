@@ -11,57 +11,29 @@ const ffi = require('ffi');
 // init
 var icmp = ffi.Library( 'icmp.dll' ,{} );
 
-// 
-// icmp.GetLogicalDrives = [ wtypes.ULONG , [ ] , {abi : ffi.FFI_STDCALL } ];
+// int __stdcall IcmpCloseHandle();
+// icmp.IcmpCloseHandle = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
+// int __stdcall IcmpCreateFile();
+// icmp.IcmpCreateFile = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
+// int __stdcall IcmpParseReplies();
+// icmp.IcmpParseReplies = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
+// int __stdcall IcmpSendEcho();
+// icmp.IcmpSendEcho = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
+// int __stdcall IcmpSendEcho2();
+// icmp.IcmpSendEcho2 = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
+// int __stdcall do_echo_rep();
+// icmp.do_echo_rep = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
+// int __stdcall do_echo_req();
+// icmp.do_echo_req = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// int __stdcall register_icmp();
+// icmp.register_icmp = [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ];
 
 // exports
 module.exports = icmp;
