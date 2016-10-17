@@ -12,5 +12,6 @@ module.exports = {
     "shlwapi" : require('./windows/shlwapi.js') ,
     "advapi32" : require('./windows/advapi32.js') ,
     "dbghelp" : require('./windows/dbghelp.js') ,
-    "icmp" : require('./windows/icmp.js') 
+    "icmp" : require('./windows/icmp.js') ,
+    "util" : require('./util.js') ,
 };

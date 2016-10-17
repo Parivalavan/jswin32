@@ -8,6 +8,7 @@ const wtypes = require('wtypes');
 const ref = require('ref');
 const ffi = require('ffi');
 const iconv = require('iconv-lite');
+const util = require('../util.js');
 
 // init
 var kernel32 = ffi.Library( "kernel32.dll" ,
@@ -408,8 +409,8 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	// int __stdcall CloseConsoleHandle();
 	// "CloseConsoleHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
-	// int __stdcall CloseHandle();
-	// "CloseHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// BOOL __stdcall CloseHandle(__in HANDLE hObject);
+	 "CloseHandle" :   [ wtypes.BOOL , [ wtypes.HANDLE ] , {abi : ffi.FFI_STDCALL } ] ,
 
 	// int __stdcall ClosePackageInfo();
 	// "ClosePackageInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
@@ -612,7 +613,8 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	// int __stdcall CreateFileTransactedW();
 	// "CreateFileTransactedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
-	 "CreateFileW" :   [ wtypes.HANDLE ,
+	 "CreateFileW" :   
+	 [ wtypes.HANDLE ,
 	 	[
 		  wtypes.LPCWSTR ,  				// __in     LPCWSTR  lpFileName,
 		  wtypes.DWORD ,  					// __in     DWORD  dwDesiredAccess,
@@ -623,7 +625,7 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 		  wtypes.HANDLE ,  					// __in_opt  HANDLE  hTemplateFile,
 		] , 
 		{abi : ffi.FFI_STDCALL } 
-	] ,
+	 ] ,
 
 	// int __stdcall CreateHardLinkA();
 	// "CreateHardLinkA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
@@ -4849,36 +4851,92 @@ module.exports = kernel32;
 // test out char*
 function test_GetComputerNameA()
 {
-	var lpnSize = ref.alloc( wtypes.DWORD , 0 );
+	do
+	{
+		// alloc a DWORD -> DWORD* lpnSize = malloc( sizeof(DWORD) );
+		var lpnSize = ref.alloc( wtypes.DWORD , 0 );
 		
-	kernel32.GetComputerNameA( ref.NULL , lpnSize );
-		
-	var nSize = lpnSize.deref();
+		kernel32.GetComputerNameA( ref.NULL , lpnSize );
+			
+		// read the result of lpnSize
+		var nSize = lpnSize.deref();
 
-	var lpBuffer = new Buffer( nSize * 1 );
+		// alloc lpBuffer -> char* lpBuffer = (char*)malloc( nSize * sizeof(char) );
+		var lpBuffer = new Buffer( nSize * wtypes.sizeof( wtypes.CHAR ) );
 
-	kernel32.GetComputerNameA( lpBuffer , lpnSize );
+		kernel32.GetComputerNameA( lpBuffer , lpnSize );
 
-	var strName = lpBuffer.toString();
-		
-	printf( strName );
+		// covert buffer to ansi string
+		var strName = lpBuffer.toString();
+			
+		printf( strName );
+
+	}while(false);
 }
 
 // test out wchar*
 function test_GetComputerNameW()
 {
-	var lpnSize = ref.alloc( wtypes.DWORD , 0 );
+	do
+	{
+		// alloc a DWORD -> DWORD* lpnSize = malloc( sizeof(DWORD) );
+		var lpnSize = ref.alloc( wtypes.DWORD , 0 );
 		
-	kernel32.GetComputerNameW( ref.NULL , lpnSize );
+		kernel32.GetComputerNameW( ref.NULL , lpnSize );
+			
+		// read the result of lpnSize
+		var nSize = lpnSize.deref();
+
+		// alloc lpBuffer -> WCHAR* lpBuffer = (WCHAR*)malloc( nSize * sizeof(WCHAR) );
+		var lpBuffer = new Buffer( nSize * wtypes.sizeof( wtypes.WCHAR ) );
+
+		kernel32.GetComputerNameW( lpBuffer , lpnSize );
+
+		// covert buffer to wide string
+		var strName = iconv.decode( lpBuffer , 'ucs2' );
+			
+		printf( strName );
 		
-	var nSize = lpnSize.deref();
+	}while(false);
 
-	var lpBuffer = new Buffer( nSize * 2 );
-
-	kernel32.GetComputerNameW( lpBuffer , lpnSize );
-
-	var strName = iconv.decode( lpBuffer , 'ucs2' );
-		
-	printf( strName );
+	return 0;
 }
-		
+
+// test return HANDLE
+function test_CreateFileW()
+{
+	var hFile = null;
+
+	var lpFileName = null; 
+	var dwDesiredAccess = 0;
+	var dwShareMode = 0x00000001; // FILE_SHARE_READ
+	var lpSecurityAttributes = ref.NULL;
+	var dwCreationDisposition = 3; // OPEN_EXISTING
+	var dwFlagsAndAttributes = 0; // FILE_ATTRIBUTE_NORMAL 
+	var hTemplateFile = ref.NULL;
+	
+	do
+	{
+		lpFileName = Buffer.from( __filename , 'ucs2');
+	
+		hFile = kernel32.CreateFileW(
+			lpFileName ,
+			dwDesiredAccess ,
+			dwShareMode ,
+			lpSecurityAttributes ,
+			dwCreationDisposition ,
+			dwFlagsAndAttributes ,
+			hTemplateFile
+		);
+
+		printf('hFile handle value = %s\n' , hFile.hexAddress() );
+	}while(false);
+
+	if ( ! util.is_INVALID_HANDLE_VALUE( hFile ) )
+	{
+		kernel32.CloseHandle( hFile );
+		hFile = null;
+	}	
+
+	return 0;
+}
