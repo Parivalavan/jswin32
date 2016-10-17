@@ -38,5 +38,4 @@ jspm_packages
 
 # vscode
 .vscode
-
-
+/tools/dlldef/.vscode
