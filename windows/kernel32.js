@@ -310,8 +310,8 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	// int __stdcall BasepSetFileEncryptionCompression();
 	// "BasepSetFileEncryptionCompression" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
 
-	// int __stdcall Beep();
-	// "Beep" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// BOOL __stdcall Beep(__in DWORD dwFreq , __in DWORD dwDuration );
+	 "Beep" :   [ wtypes.BOOL , [ wtypes.DWORD , wtypes.DWORD  ] , {abi : ffi.FFI_STDCALL } ] ,
 
 	// int __stdcall BeginUpdateResourceA();
 	// "BeginUpdateResourceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
