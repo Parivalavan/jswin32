@@ -10,720 +10,2140 @@ const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
 
-// init
 var dbghelp = ffi.Library( "dbghelp.dll" ,
 {
-	// int __stdcall DbgHelpCreateUserDump();
-	// "DbgHelpCreateUserDump" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DbgHelpCreateUserDumpW();
-	// "DbgHelpCreateUserDumpW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumDirTree();
-	// "EnumDirTree" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumDirTreeW();
-	// "EnumDirTreeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateLoadedModules();
-	// "EnumerateLoadedModules" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateLoadedModules64();
-	// "EnumerateLoadedModules64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateLoadedModulesEx();
-	// "EnumerateLoadedModulesEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateLoadedModulesExW();
-	// "EnumerateLoadedModulesExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateLoadedModulesW64();
-	// "EnumerateLoadedModulesW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ExtensionApiVersion();
-	// "ExtensionApiVersion" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindDebugInfoFile();
-	// "FindDebugInfoFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindDebugInfoFileEx();
-	// "FindDebugInfoFileEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindDebugInfoFileExW();
-	// "FindDebugInfoFileExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindExecutableImage();
-	// "FindExecutableImage" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindExecutableImageEx();
-	// "FindExecutableImageEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindExecutableImageExW();
-	// "FindExecutableImageExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindFileInPath();
-	// "FindFileInPath" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindFileInSearchPath();
-	// "FindFileInSearchPath" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSymLoadError();
-	// "GetSymLoadError" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTimestampForLoadedLibrary();
-	// "GetTimestampForLoadedLibrary" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImageDirectoryEntryToData();
-	// "ImageDirectoryEntryToData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImageDirectoryEntryToDataEx();
-	// "ImageDirectoryEntryToDataEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImageNtHeader();
-	// "ImageNtHeader" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImageRvaToSection();
-	// "ImageRvaToSection" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImageRvaToVa();
-	// "ImageRvaToVa" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImagehlpApiVersion();
-	// "ImagehlpApiVersion" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImagehlpApiVersionEx();
-	// "ImagehlpApiVersionEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MakeSureDirectoryPathExists();
-	// "MakeSureDirectoryPathExists" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MiniDumpReadDumpStream();
-	// "MiniDumpReadDumpStream" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MiniDumpWriteDump();
-	// "MiniDumpWriteDump" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall N/A();
-	// "N/A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RangeMapAddPeImageSections();
-	// "RangeMapAddPeImageSections" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RangeMapCreate();
-	// "RangeMapCreate" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RangeMapFree();
-	// "RangeMapFree" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RangeMapRead();
-	// "RangeMapRead" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RangeMapRemove();
-	// "RangeMapRemove" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RangeMapWrite();
-	// "RangeMapWrite" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoveInvalidModuleList();
-	// "RemoveInvalidModuleList" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ReportSymbolLoadSummary();
-	// "ReportSymbolLoadSummary" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SearchTreeForFile();
-	// "SearchTreeForFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SearchTreeForFileW();
-	// "SearchTreeForFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetCheckUserInterruptShared();
-	// "SetCheckUserInterruptShared" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSymLoadError();
-	// "SetSymLoadError" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StackWalk();
-	// "StackWalk" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StackWalk64();
-	// "StackWalk64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StackWalkEx();
-	// "StackWalkEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymAddSourceStream();
-	// "SymAddSourceStream" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymAddSourceStreamA();
-	// "SymAddSourceStreamA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymAddSourceStreamW();
-	// "SymAddSourceStreamW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymAddSymbol();
-	// "SymAddSymbol" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymAddSymbolW();
-	// "SymAddSymbolW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymAddrIncludeInlineTrace();
-	// "SymAddrIncludeInlineTrace" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymCleanup();
-	// "SymCleanup" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymCompareInlineTrace();
-	// "SymCompareInlineTrace" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymDeleteSymbol();
-	// "SymDeleteSymbol" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymDeleteSymbolW();
-	// "SymDeleteSymbolW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumLines();
-	// "SymEnumLines" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumLinesW();
-	// "SymEnumLinesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumProcesses();
-	// "SymEnumProcesses" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSourceFileTokens();
-	// "SymEnumSourceFileTokens" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSourceFiles();
-	// "SymEnumSourceFiles" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSourceFilesW();
-	// "SymEnumSourceFilesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSourceLines();
-	// "SymEnumSourceLines" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSourceLinesW();
-	// "SymEnumSourceLinesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSym();
-	// "SymEnumSym" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSymbols();
-	// "SymEnumSymbols" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSymbolsEx();
-	// "SymEnumSymbolsEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSymbolsExW();
-	// "SymEnumSymbolsExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSymbolsForAddr();
-	// "SymEnumSymbolsForAddr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSymbolsForAddrW();
-	// "SymEnumSymbolsForAddrW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumSymbolsW();
-	// "SymEnumSymbolsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumTypes();
-	// "SymEnumTypes" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumTypesByName();
-	// "SymEnumTypesByName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumTypesByNameW();
-	// "SymEnumTypesByNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumTypesW();
-	// "SymEnumTypesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateModules();
-	// "SymEnumerateModules" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateModules64();
-	// "SymEnumerateModules64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateModulesW64();
-	// "SymEnumerateModulesW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateSymbols();
-	// "SymEnumerateSymbols" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateSymbols64();
-	// "SymEnumerateSymbols64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateSymbolsW();
-	// "SymEnumerateSymbolsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymEnumerateSymbolsW64();
-	// "SymEnumerateSymbolsW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFindDebugInfoFile();
-	// "SymFindDebugInfoFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFindDebugInfoFileW();
-	// "SymFindDebugInfoFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFindExecutableImage();
-	// "SymFindExecutableImage" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFindExecutableImageW();
-	// "SymFindExecutableImageW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFindFileInPath();
-	// "SymFindFileInPath" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFindFileInPathW();
-	// "SymFindFileInPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFreeDiaString();
-	// "SymFreeDiaString" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromAddr();
-	// "SymFromAddr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromAddrW();
-	// "SymFromAddrW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromIndex();
-	// "SymFromIndex" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromIndexW();
-	// "SymFromIndexW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromInlineContext();
-	// "SymFromInlineContext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromInlineContextW();
-	// "SymFromInlineContextW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromName();
-	// "SymFromName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromNameW();
-	// "SymFromNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromToken();
-	// "SymFromToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFromTokenW();
-	// "SymFromTokenW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFunctionTableAccess();
-	// "SymFunctionTableAccess" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFunctionTableAccess64();
-	// "SymFunctionTableAccess64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymFunctionTableAccess64AccessRoutines();
-	// "SymFunctionTableAccess64AccessRoutines" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetDiaSession();
-	// "SymGetDiaSession" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetFileLineOffsets64();
-	// "SymGetFileLineOffsets64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetHomeDirectory();
-	// "SymGetHomeDirectory" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetHomeDirectoryW();
-	// "SymGetHomeDirectoryW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromAddr();
-	// "SymGetLineFromAddr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromAddr64();
-	// "SymGetLineFromAddr64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromAddrEx();
-	// "SymGetLineFromAddrEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromAddrW64();
-	// "SymGetLineFromAddrW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromInlineContext();
-	// "SymGetLineFromInlineContext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromInlineContextW();
-	// "SymGetLineFromInlineContextW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromName();
-	// "SymGetLineFromName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromName64();
-	// "SymGetLineFromName64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromNameEx();
-	// "SymGetLineFromNameEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineFromNameW64();
-	// "SymGetLineFromNameW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineNext();
-	// "SymGetLineNext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineNext64();
-	// "SymGetLineNext64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineNextEx();
-	// "SymGetLineNextEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLineNextW64();
-	// "SymGetLineNextW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLinePrev();
-	// "SymGetLinePrev" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLinePrev64();
-	// "SymGetLinePrev64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLinePrevEx();
-	// "SymGetLinePrevEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetLinePrevW64();
-	// "SymGetLinePrevW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetModuleBase();
-	// "SymGetModuleBase" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetModuleBase64();
-	// "SymGetModuleBase64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetModuleInfo();
-	// "SymGetModuleInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetModuleInfo64();
-	// "SymGetModuleInfo64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetModuleInfoW();
-	// "SymGetModuleInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetModuleInfoW64();
-	// "SymGetModuleInfoW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetOmapBlockBase();
-	// "SymGetOmapBlockBase" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetOmaps();
-	// "SymGetOmaps" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetOptions();
-	// "SymGetOptions" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetScope();
-	// "SymGetScope" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetScopeW();
-	// "SymGetScopeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSearchPath();
-	// "SymGetSearchPath" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSearchPathW();
-	// "SymGetSearchPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceFile();
-	// "SymGetSourceFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceFileFromToken();
-	// "SymGetSourceFileFromToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceFileFromTokenW();
-	// "SymGetSourceFileFromTokenW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceFileToken();
-	// "SymGetSourceFileToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceFileTokenW();
-	// "SymGetSourceFileTokenW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceFileW();
-	// "SymGetSourceFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceVarFromToken();
-	// "SymGetSourceVarFromToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSourceVarFromTokenW();
-	// "SymGetSourceVarFromTokenW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymFromAddr();
-	// "SymGetSymFromAddr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymFromAddr64();
-	// "SymGetSymFromAddr64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymFromName();
-	// "SymGetSymFromName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymFromName64();
-	// "SymGetSymFromName64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymNext();
-	// "SymGetSymNext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymNext64();
-	// "SymGetSymNext64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymPrev();
-	// "SymGetSymPrev" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymPrev64();
-	// "SymGetSymPrev64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymbolFile();
-	// "SymGetSymbolFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetSymbolFileW();
-	// "SymGetSymbolFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetTypeFromName();
-	// "SymGetTypeFromName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetTypeFromNameW();
-	// "SymGetTypeFromNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetTypeInfo();
-	// "SymGetTypeInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetTypeInfoEx();
-	// "SymGetTypeInfoEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymGetUnwindInfo();
-	// "SymGetUnwindInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymInitialize();
-	// "SymInitialize" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymInitializeW();
-	// "SymInitializeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymLoadModule();
-	// "SymLoadModule" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymLoadModule64();
-	// "SymLoadModule64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymLoadModuleEx();
-	// "SymLoadModuleEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymLoadModuleExW();
-	// "SymLoadModuleExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymMatchFileName();
-	// "SymMatchFileName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymMatchFileNameW();
-	// "SymMatchFileNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymMatchString();
-	// "SymMatchString" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymMatchStringA();
-	// "SymMatchStringA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymMatchStringW();
-	// "SymMatchStringW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymNext();
-	// "SymNext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymNextW();
-	// "SymNextW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymPrev();
-	// "SymPrev" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymPrevW();
-	// "SymPrevW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymQueryInlineTrace();
-	// "SymQueryInlineTrace" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymRefreshModuleList();
-	// "SymRefreshModuleList" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymRegisterCallback();
-	// "SymRegisterCallback" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymRegisterCallback64();
-	// "SymRegisterCallback64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymRegisterCallbackW64();
-	// "SymRegisterCallbackW64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymRegisterFunctionEntryCallback();
-	// "SymRegisterFunctionEntryCallback" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymRegisterFunctionEntryCallback64();
-	// "SymRegisterFunctionEntryCallback64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSearch();
-	// "SymSearch" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSearchW();
-	// "SymSearchW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetContext();
-	// "SymSetContext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetHomeDirectory();
-	// "SymSetHomeDirectory" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetHomeDirectoryW();
-	// "SymSetHomeDirectoryW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetOptions();
-	// "SymSetOptions" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetParentWindow();
-	// "SymSetParentWindow" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetScopeFromAddr();
-	// "SymSetScopeFromAddr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetScopeFromIndex();
-	// "SymSetScopeFromIndex" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetScopeFromInlineContext();
-	// "SymSetScopeFromInlineContext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetSearchPath();
-	// "SymSetSearchPath" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSetSearchPathW();
-	// "SymSetSearchPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvDeltaName();
-	// "SymSrvDeltaName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvDeltaNameW();
-	// "SymSrvDeltaNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetFileIndexInfo();
-	// "SymSrvGetFileIndexInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetFileIndexInfoW();
-	// "SymSrvGetFileIndexInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetFileIndexString();
-	// "SymSrvGetFileIndexString" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetFileIndexStringW();
-	// "SymSrvGetFileIndexStringW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetFileIndexes();
-	// "SymSrvGetFileIndexes" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetFileIndexesW();
-	// "SymSrvGetFileIndexesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetSupplement();
-	// "SymSrvGetSupplement" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvGetSupplementW();
-	// "SymSrvGetSupplementW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvIsStore();
-	// "SymSrvIsStore" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvIsStoreW();
-	// "SymSrvIsStoreW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvStoreFile();
-	// "SymSrvStoreFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvStoreFileW();
-	// "SymSrvStoreFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvStoreSupplement();
-	// "SymSrvStoreSupplement" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymSrvStoreSupplementW();
-	// "SymSrvStoreSupplementW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymUnDName();
-	// "SymUnDName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymUnDName64();
-	// "SymUnDName64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymUnloadModule();
-	// "SymUnloadModule" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SymUnloadModule64();
-	// "SymUnloadModule64" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UnDecorateSymbolName();
-	// "UnDecorateSymbolName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UnDecorateSymbolNameW();
-	// "UnDecorateSymbolNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WinDbgExtensionDllInit();
-	// "WinDbgExtensionDllInit" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall _EFN_DumpImage();
-	// "_EFN_DumpImage" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall block();
-	// "block" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall chksym();
-	// "chksym" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall dbghelp();
-	// "dbghelp" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall dh();
-	// "dh" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall fptr();
-	// "fptr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall homedir();
-	// "homedir" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall inlinedbg();
-	// "inlinedbg" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall itoldyouso();
-	// "itoldyouso" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall lmi();
-	// "lmi" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall lminfo();
-	// "lminfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall omap();
-	// "omap" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall optdbgdump();
-	// "optdbgdump" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall optdbgdumpaddr();
-	// "optdbgdumpaddr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall srcfiles();
-	// "srcfiles" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall stack_force_ebp();
-	// "stack_force_ebp" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall stackdbg();
-	// "stackdbg" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall sym();
-	// "sym" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall symsrv();
-	// "symsrv" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall vc7fpo();
-	// "vc7fpo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "DbgHelpCreateUserDump" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DbgHelpCreateUserDumpW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumDirTree" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumDirTreeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateLoadedModules" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateLoadedModules64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateLoadedModulesEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateLoadedModulesExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateLoadedModulesW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ExtensionApiVersion" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindDebugInfoFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindDebugInfoFileEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindDebugInfoFileExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindExecutableImage" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindExecutableImageEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindExecutableImageExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindFileInPath" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindFileInSearchPath" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSymLoadError" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTimestampForLoadedLibrary" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImageDirectoryEntryToData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImageDirectoryEntryToDataEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImageNtHeader" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImageRvaToSection" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImageRvaToVa" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImagehlpApiVersion" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImagehlpApiVersionEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MakeSureDirectoryPathExists" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MiniDumpReadDumpStream" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MiniDumpWriteDump" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "N/A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RangeMapAddPeImageSections" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RangeMapCreate" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RangeMapFree" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RangeMapRead" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RangeMapRemove" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RangeMapWrite" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoveInvalidModuleList" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ReportSymbolLoadSummary" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SearchTreeForFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SearchTreeForFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetCheckUserInterruptShared" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSymLoadError" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StackWalk" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StackWalk64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StackWalkEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymAddSourceStream" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymAddSourceStreamA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymAddSourceStreamW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymAddSymbol" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymAddSymbolW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymAddrIncludeInlineTrace" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymCleanup" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymCompareInlineTrace" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymDeleteSymbol" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymDeleteSymbolW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumLines" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumLinesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumProcesses" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSourceFileTokens" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSourceFiles" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSourceFilesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSourceLines" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSourceLinesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSym" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSymbols" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSymbolsEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSymbolsExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSymbolsForAddr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSymbolsForAddrW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumSymbolsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumTypes" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumTypesByName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumTypesByNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumTypesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateModules" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateModules64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateModulesW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateSymbols" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateSymbols64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateSymbolsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymEnumerateSymbolsW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFindDebugInfoFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFindDebugInfoFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFindExecutableImage" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFindExecutableImageW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFindFileInPath" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFindFileInPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFreeDiaString" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromAddr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromAddrW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromIndex" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromIndexW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromInlineContext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromInlineContextW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFromTokenW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFunctionTableAccess" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFunctionTableAccess64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymFunctionTableAccess64AccessRoutines" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetDiaSession" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetFileLineOffsets64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetHomeDirectory" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetHomeDirectoryW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromAddr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromAddr64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromAddrEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromAddrW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromInlineContext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromInlineContextW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromName64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromNameEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineFromNameW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineNext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineNext64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineNextEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLineNextW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLinePrev" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLinePrev64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLinePrevEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetLinePrevW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetModuleBase" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetModuleBase64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetModuleInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetModuleInfo64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetModuleInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetModuleInfoW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetOmapBlockBase" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetOmaps" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetOptions" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetScope" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetScopeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSearchPath" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSearchPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceFileFromToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceFileFromTokenW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceFileToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceFileTokenW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceVarFromToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSourceVarFromTokenW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymFromAddr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymFromAddr64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymFromName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymFromName64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymNext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymNext64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymPrev" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymPrev64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymbolFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetSymbolFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetTypeFromName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetTypeFromNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetTypeInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetTypeInfoEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymGetUnwindInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymInitialize" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymInitializeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymLoadModule" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymLoadModule64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymLoadModuleEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymLoadModuleExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymMatchFileName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymMatchFileNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymMatchString" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymMatchStringA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymMatchStringW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymNext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymNextW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymPrev" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymPrevW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymQueryInlineTrace" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymRefreshModuleList" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymRegisterCallback" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymRegisterCallback64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymRegisterCallbackW64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymRegisterFunctionEntryCallback" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymRegisterFunctionEntryCallback64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSearch" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSearchW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetContext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetHomeDirectory" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetHomeDirectoryW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetOptions" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetParentWindow" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetScopeFromAddr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetScopeFromIndex" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetScopeFromInlineContext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetSearchPath" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSetSearchPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvDeltaName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvDeltaNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetFileIndexInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetFileIndexInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetFileIndexString" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetFileIndexStringW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetFileIndexes" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetFileIndexesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetSupplement" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvGetSupplementW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvIsStore" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvIsStoreW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvStoreFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvStoreFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvStoreSupplement" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymSrvStoreSupplementW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymUnDName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymUnDName64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymUnloadModule" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SymUnloadModule64" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UnDecorateSymbolName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UnDecorateSymbolNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WinDbgExtensionDllInit" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "_EFN_DumpImage" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "block" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "chksym" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "dbghelp" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "dh" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "fptr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "homedir" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "inlinedbg" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "itoldyouso" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "lmi" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "lminfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "omap" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "optdbgdump" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "optdbgdumpaddr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "srcfiles" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "stack_force_ebp" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "stackdbg" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "sym" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "symsrv" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "vc7fpo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
 });
 module.exports = dbghelp;
-

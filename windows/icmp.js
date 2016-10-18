@@ -10,34 +10,79 @@ const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
 
-// init
-
 var icmp = ffi.Library( "icmp.dll" ,
 {
-	// int __stdcall IcmpCloseHandle();
-	// "IcmpCloseHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "IcmpCloseHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall IcmpCreateFile();
-	// "IcmpCreateFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "IcmpCreateFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall IcmpParseReplies();
-	// "IcmpParseReplies" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "IcmpParseReplies" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall IcmpSendEcho();
-	// "IcmpSendEcho" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "IcmpSendEcho" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall IcmpSendEcho2();
-	// "IcmpSendEcho2" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "IcmpSendEcho2" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall do_echo_rep();
-	// "do_echo_rep" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "do_echo_rep" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall do_echo_req();
-	// "do_echo_req" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "do_echo_req" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
-	// int __stdcall register_icmp();
-	// "register_icmp" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "register_icmp" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
 });
 module.exports = icmp;
-

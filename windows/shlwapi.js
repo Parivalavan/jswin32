@@ -9,1149 +9,3427 @@ const ref = require('ref');
 const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
-
-// init
 var shlwapi = ffi.Library( "shlwapi.dll" ,
 {
-	// int __stdcall AssocCreate();
-	// "AssocCreate" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocGetPerceivedType();
-	// "AssocGetPerceivedType" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocIsDangerous();
-	// "AssocIsDangerous" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocQueryKeyA();
-	// "AssocQueryKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocQueryKeyW();
-	// "AssocQueryKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocQueryStringA();
-	// "AssocQueryStringA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocQueryStringByKeyA();
-	// "AssocQueryStringByKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocQueryStringByKeyW();
-	// "AssocQueryStringByKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AssocQueryStringW();
-	// "AssocQueryStringW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ChrCmpIA();
-	// "ChrCmpIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ChrCmpIW();
-	// "ChrCmpIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ColorAdjustLuma();
-	// "ColorAdjustLuma" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ColorHLSToRGB();
-	// "ColorHLSToRGB" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ColorRGBToHLS();
-	// "ColorRGBToHLS" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConnectToConnectionPoint();
-	// "ConnectToConnectionPoint" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DelayLoadFailureHook();
-	// "DelayLoadFailureHook" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DllGetClassObject();
-	// "DllGetClassObject" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DllGetVersion();
-	// "DllGetVersion" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GUIDFromStringW();
-	// "GUIDFromStringW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAcceptLanguagesA();
-	// "GetAcceptLanguagesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAcceptLanguagesW();
-	// "GetAcceptLanguagesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetMenuPosFromID();
-	// "GetMenuPosFromID" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall HashData();
-	// "HashData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_Copy();
-	// "IStream_Copy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_Read();
-	// "IStream_Read" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_ReadPidl();
-	// "IStream_ReadPidl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_ReadStr();
-	// "IStream_ReadStr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_Reset();
-	// "IStream_Reset" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_Size();
-	// "IStream_Size" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_Write();
-	// "IStream_Write" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_WritePidl();
-	// "IStream_WritePidl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IStream_WriteStr();
-	// "IStream_WriteStr" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_AtomicRelease();
-	// "IUnknown_AtomicRelease" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_Exec();
-	// "IUnknown_Exec" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_GetSite();
-	// "IUnknown_GetSite" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_GetWindow();
-	// "IUnknown_GetWindow" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_QueryService();
-	// "IUnknown_QueryService" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_QueryStatus();
-	// "IUnknown_QueryStatus" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_Set();
-	// "IUnknown_Set" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IUnknown_SetSite();
-	// "IUnknown_SetSite" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IntlStrEqWorkerA();
-	// "IntlStrEqWorkerA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IntlStrEqWorkerW();
-	// "IntlStrEqWorkerW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsCharSpaceA();
-	// "IsCharSpaceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsCharSpaceW();
-	// "IsCharSpaceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsInternetESCEnabled();
-	// "IsInternetESCEnabled" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsOS();
-	// "IsOS" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MLLoadLibraryA();
-	// "MLLoadLibraryA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MLLoadLibraryW();
-	// "MLLoadLibraryW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall N/A();
-	// "N/A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ParseURLA();
-	// "ParseURLA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ParseURLW();
-	// "ParseURLW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathAddBackslashA();
-	// "PathAddBackslashA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathAddBackslashW();
-	// "PathAddBackslashW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathAddExtensionA();
-	// "PathAddExtensionA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathAddExtensionW();
-	// "PathAddExtensionW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathAppendA();
-	// "PathAppendA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathAppendW();
-	// "PathAppendW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathBuildRootA();
-	// "PathBuildRootA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathBuildRootW();
-	// "PathBuildRootW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCanonicalizeA();
-	// "PathCanonicalizeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCanonicalizeW();
-	// "PathCanonicalizeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCombineA();
-	// "PathCombineA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCombineW();
-	// "PathCombineW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCommonPrefixA();
-	// "PathCommonPrefixA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCommonPrefixW();
-	// "PathCommonPrefixW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCompactPathA();
-	// "PathCompactPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCompactPathExA();
-	// "PathCompactPathExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCompactPathExW();
-	// "PathCompactPathExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCompactPathW();
-	// "PathCompactPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCreateFromUrlA();
-	// "PathCreateFromUrlA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCreateFromUrlAlloc();
-	// "PathCreateFromUrlAlloc" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathCreateFromUrlW();
-	// "PathCreateFromUrlW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFileExistsA();
-	// "PathFileExistsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFileExistsAndAttributesW();
-	// "PathFileExistsAndAttributesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFileExistsW();
-	// "PathFileExistsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindExtensionA();
-	// "PathFindExtensionA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindExtensionW();
-	// "PathFindExtensionW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindFileNameA();
-	// "PathFindFileNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindFileNameW();
-	// "PathFindFileNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindNextComponentA();
-	// "PathFindNextComponentA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindNextComponentW();
-	// "PathFindNextComponentW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindOnPathA();
-	// "PathFindOnPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindOnPathW();
-	// "PathFindOnPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindSuffixArrayA();
-	// "PathFindSuffixArrayA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathFindSuffixArrayW();
-	// "PathFindSuffixArrayW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathGetArgsA();
-	// "PathGetArgsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathGetArgsW();
-	// "PathGetArgsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathGetCharTypeA();
-	// "PathGetCharTypeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathGetCharTypeW();
-	// "PathGetCharTypeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathGetDriveNumberA();
-	// "PathGetDriveNumberA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathGetDriveNumberW();
-	// "PathGetDriveNumberW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsContentTypeA();
-	// "PathIsContentTypeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsContentTypeW();
-	// "PathIsContentTypeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsDirectoryA();
-	// "PathIsDirectoryA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsDirectoryEmptyA();
-	// "PathIsDirectoryEmptyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsDirectoryEmptyW();
-	// "PathIsDirectoryEmptyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsDirectoryW();
-	// "PathIsDirectoryW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsFileSpecA();
-	// "PathIsFileSpecA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsFileSpecW();
-	// "PathIsFileSpecW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsLFNFileSpecA();
-	// "PathIsLFNFileSpecA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsLFNFileSpecW();
-	// "PathIsLFNFileSpecW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsNetworkPathA();
-	// "PathIsNetworkPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsNetworkPathW();
-	// "PathIsNetworkPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsPrefixA();
-	// "PathIsPrefixA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsPrefixW();
-	// "PathIsPrefixW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsRelativeA();
-	// "PathIsRelativeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsRelativeW();
-	// "PathIsRelativeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsRootA();
-	// "PathIsRootA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsRootW();
-	// "PathIsRootW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsSameRootA();
-	// "PathIsSameRootA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsSameRootW();
-	// "PathIsSameRootW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsSystemFolderA();
-	// "PathIsSystemFolderA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsSystemFolderW();
-	// "PathIsSystemFolderW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsUNCA();
-	// "PathIsUNCA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsUNCServerA();
-	// "PathIsUNCServerA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsUNCServerShareA();
-	// "PathIsUNCServerShareA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsUNCServerShareW();
-	// "PathIsUNCServerShareW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsUNCServerW();
-	// "PathIsUNCServerW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsUNCW();
-	// "PathIsUNCW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsURLA();
-	// "PathIsURLA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathIsURLW();
-	// "PathIsURLW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMakePrettyA();
-	// "PathMakePrettyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMakePrettyW();
-	// "PathMakePrettyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMakeSystemFolderA();
-	// "PathMakeSystemFolderA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMakeSystemFolderW();
-	// "PathMakeSystemFolderW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMatchSpecA();
-	// "PathMatchSpecA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMatchSpecExA();
-	// "PathMatchSpecExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMatchSpecExW();
-	// "PathMatchSpecExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathMatchSpecW();
-	// "PathMatchSpecW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathParseIconLocationA();
-	// "PathParseIconLocationA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathParseIconLocationW();
-	// "PathParseIconLocationW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathQuoteSpacesA();
-	// "PathQuoteSpacesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathQuoteSpacesW();
-	// "PathQuoteSpacesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRelativePathToA();
-	// "PathRelativePathToA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRelativePathToW();
-	// "PathRelativePathToW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveArgsA();
-	// "PathRemoveArgsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveArgsW();
-	// "PathRemoveArgsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveBackslashA();
-	// "PathRemoveBackslashA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveBackslashW();
-	// "PathRemoveBackslashW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveBlanksA();
-	// "PathRemoveBlanksA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveBlanksW();
-	// "PathRemoveBlanksW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveExtensionA();
-	// "PathRemoveExtensionA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveExtensionW();
-	// "PathRemoveExtensionW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveFileSpecA();
-	// "PathRemoveFileSpecA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRemoveFileSpecW();
-	// "PathRemoveFileSpecW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRenameExtensionA();
-	// "PathRenameExtensionA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathRenameExtensionW();
-	// "PathRenameExtensionW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathSearchAndQualifyA();
-	// "PathSearchAndQualifyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathSearchAndQualifyW();
-	// "PathSearchAndQualifyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathSetDlgItemPathA();
-	// "PathSetDlgItemPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathSetDlgItemPathW();
-	// "PathSetDlgItemPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathSkipRootA();
-	// "PathSkipRootA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathSkipRootW();
-	// "PathSkipRootW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathStripPathA();
-	// "PathStripPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathStripPathW();
-	// "PathStripPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathStripToRootA();
-	// "PathStripToRootA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathStripToRootW();
-	// "PathStripToRootW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUnExpandEnvStringsA();
-	// "PathUnExpandEnvStringsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUnExpandEnvStringsW();
-	// "PathUnExpandEnvStringsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUndecorateA();
-	// "PathUndecorateA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUndecorateW();
-	// "PathUndecorateW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUnmakeSystemFolderA();
-	// "PathUnmakeSystemFolderA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUnmakeSystemFolderW();
-	// "PathUnmakeSystemFolderW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUnquoteSpacesA();
-	// "PathUnquoteSpacesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PathUnquoteSpacesW();
-	// "PathUnquoteSpacesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QISearch();
-	// "QISearch" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHAllocShared();
-	// "SHAllocShared" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHAnsiToAnsi();
-	// "SHAnsiToAnsi" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHAnsiToUnicode();
-	// "SHAnsiToUnicode" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHAutoComplete();
-	// "SHAutoComplete" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCopyKeyA();
-	// "SHCopyKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCopyKeyW();
-	// "SHCopyKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateMemStream();
-	// "SHCreateMemStream" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateShellPalette();
-	// "SHCreateShellPalette" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateStreamOnFileA();
-	// "SHCreateStreamOnFileA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateStreamOnFileEx();
-	// "SHCreateStreamOnFileEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateStreamOnFileW();
-	// "SHCreateStreamOnFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateStreamWrapper();
-	// "SHCreateStreamWrapper" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateThread();
-	// "SHCreateThread" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateThreadRef();
-	// "SHCreateThreadRef" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateThreadWithHandle();
-	// "SHCreateThreadWithHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHCreateWorkerWindowW();
-	// "SHCreateWorkerWindowW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteEmptyKeyA();
-	// "SHDeleteEmptyKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteEmptyKeyW();
-	// "SHDeleteEmptyKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteKeyA();
-	// "SHDeleteKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteKeyW();
-	// "SHDeleteKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteOrphanKeyA();
-	// "SHDeleteOrphanKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteOrphanKeyW();
-	// "SHDeleteOrphanKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteValueA();
-	// "SHDeleteValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHDeleteValueW();
-	// "SHDeleteValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHEnumKeyExA();
-	// "SHEnumKeyExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHEnumKeyExW();
-	// "SHEnumKeyExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHEnumValueA();
-	// "SHEnumValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHEnumValueW();
-	// "SHEnumValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHFormatDateTimeA();
-	// "SHFormatDateTimeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHFormatDateTimeW();
-	// "SHFormatDateTimeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHFreeShared();
-	// "SHFreeShared" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHGetInverseCMAP();
-	// "SHGetInverseCMAP" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHGetThreadRef();
-	// "SHGetThreadRef" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHGetValueA();
-	// "SHGetValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHGetValueW();
-	// "SHGetValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHGetViewStatePropertyBag();
-	// "SHGetViewStatePropertyBag" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHIsChildOrSelf();
-	// "SHIsChildOrSelf" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHIsLowMemoryMachine();
-	// "SHIsLowMemoryMachine" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHLoadIndirectString();
-	// "SHLoadIndirectString" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHLockShared();
-	// "SHLockShared" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHMessageBoxCheckA();
-	// "SHMessageBoxCheckA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHMessageBoxCheckW();
-	// "SHMessageBoxCheckW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHOpenRegStream2A();
-	// "SHOpenRegStream2A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHOpenRegStream2W();
-	// "SHOpenRegStream2W" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHOpenRegStreamA();
-	// "SHOpenRegStreamA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHOpenRegStreamW();
-	// "SHOpenRegStreamW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHPackDispParamsV();
-	// "SHPackDispParamsV" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHPinDllOfCLSID();
-	// "SHPinDllOfCLSID" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHPropertyBag_ReadStrAlloc();
-	// "SHPropertyBag_ReadStrAlloc" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHPropertyBag_WriteBSTR();
-	// "SHPropertyBag_WriteBSTR" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHQueryInfoKeyA();
-	// "SHQueryInfoKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHQueryInfoKeyW();
-	// "SHQueryInfoKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHQueryValueExA();
-	// "SHQueryValueExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHQueryValueExW();
-	// "SHQueryValueExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegCloseUSKey();
-	// "SHRegCloseUSKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegCreateUSKeyA();
-	// "SHRegCreateUSKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegCreateUSKeyW();
-	// "SHRegCreateUSKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegDeleteEmptyUSKeyA();
-	// "SHRegDeleteEmptyUSKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegDeleteEmptyUSKeyW();
-	// "SHRegDeleteEmptyUSKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegDeleteUSValueA();
-	// "SHRegDeleteUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegDeleteUSValueW();
-	// "SHRegDeleteUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegDuplicateHKey();
-	// "SHRegDuplicateHKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegEnumUSKeyA();
-	// "SHRegEnumUSKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegEnumUSKeyW();
-	// "SHRegEnumUSKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegEnumUSValueA();
-	// "SHRegEnumUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegEnumUSValueW();
-	// "SHRegEnumUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetBoolUSValueA();
-	// "SHRegGetBoolUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetBoolUSValueW();
-	// "SHRegGetBoolUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetBoolValueFromHKCUHKLM();
-	// "SHRegGetBoolValueFromHKCUHKLM" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetIntW();
-	// "SHRegGetIntW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetPathA();
-	// "SHRegGetPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetPathW();
-	// "SHRegGetPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetUSValueA();
-	// "SHRegGetUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetUSValueW();
-	// "SHRegGetUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetValueA();
-	// "SHRegGetValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetValueFromHKCUHKLM();
-	// "SHRegGetValueFromHKCUHKLM" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegGetValueW();
-	// "SHRegGetValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegOpenUSKeyA();
-	// "SHRegOpenUSKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegOpenUSKeyW();
-	// "SHRegOpenUSKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegQueryInfoUSKeyA();
-	// "SHRegQueryInfoUSKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegQueryInfoUSKeyW();
-	// "SHRegQueryInfoUSKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegQueryUSValueA();
-	// "SHRegQueryUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegQueryUSValueW();
-	// "SHRegQueryUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegSetPathA();
-	// "SHRegSetPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegSetPathW();
-	// "SHRegSetPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegSetUSValueA();
-	// "SHRegSetUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegSetUSValueW();
-	// "SHRegSetUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegWriteUSValueA();
-	// "SHRegWriteUSValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegWriteUSValueW();
-	// "SHRegWriteUSValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRegisterValidateTemplate();
-	// "SHRegisterValidateTemplate" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHReleaseThreadRef();
-	// "SHReleaseThreadRef" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHRunIndirectRegClientCommand();
-	// "SHRunIndirectRegClientCommand" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHSendMessageBroadcastA();
-	// "SHSendMessageBroadcastA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHSendMessageBroadcastW();
-	// "SHSendMessageBroadcastW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHSetThreadRef();
-	// "SHSetThreadRef" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHSetValueA();
-	// "SHSetValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHSetValueW();
-	// "SHSetValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHSkipJunction();
-	// "SHSkipJunction" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHStrDupA();
-	// "SHStrDupA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHStrDupW();
-	// "SHStrDupW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHStripMneumonicA();
-	// "SHStripMneumonicA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHStripMneumonicW();
-	// "SHStripMneumonicW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHUnicodeToAnsi();
-	// "SHUnicodeToAnsi" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHUnicodeToAnsiCP();
-	// "SHUnicodeToAnsiCP" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHUnicodeToUnicode();
-	// "SHUnicodeToUnicode" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SHUnlockShared();
-	// "SHUnlockShared" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ShellMessageBoxA();
-	// "ShellMessageBoxA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ShellMessageBoxW();
-	// "ShellMessageBoxW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCSpnA();
-	// "StrCSpnA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCSpnIA();
-	// "StrCSpnIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCSpnIW();
-	// "StrCSpnIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCSpnW();
-	// "StrCSpnW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCatBuffA();
-	// "StrCatBuffA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCatBuffW();
-	// "StrCatBuffW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCatChainW();
-	// "StrCatChainW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCatW();
-	// "StrCatW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrChrA();
-	// "StrChrA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrChrIA();
-	// "StrChrIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrChrIW();
-	// "StrChrIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrChrNIW();
-	// "StrChrNIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrChrNW();
-	// "StrChrNW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrChrW();
-	// "StrChrW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpCA();
-	// "StrCmpCA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpCW();
-	// "StrCmpCW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpICA();
-	// "StrCmpICA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpICW();
-	// "StrCmpICW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpIW();
-	// "StrCmpIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpLogicalW();
-	// "StrCmpLogicalW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNA();
-	// "StrCmpNA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNCA();
-	// "StrCmpNCA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNCW();
-	// "StrCmpNCW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNIA();
-	// "StrCmpNIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNICA();
-	// "StrCmpNICA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNICW();
-	// "StrCmpNICW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNIW();
-	// "StrCmpNIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpNW();
-	// "StrCmpNW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCmpW();
-	// "StrCmpW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCpyNW();
-	// "StrCpyNW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrCpyW();
-	// "StrCpyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrDupA();
-	// "StrDupA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrDupW();
-	// "StrDupW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFormatByteSize64A();
-	// "StrFormatByteSize64A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFormatByteSizeA();
-	// "StrFormatByteSizeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFormatByteSizeEx();
-	// "StrFormatByteSizeEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFormatByteSizeW();
-	// "StrFormatByteSizeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFormatKBSizeA();
-	// "StrFormatKBSizeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFormatKBSizeW();
-	// "StrFormatKBSizeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFromTimeIntervalA();
-	// "StrFromTimeIntervalA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrFromTimeIntervalW();
-	// "StrFromTimeIntervalW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrIsIntlEqualA();
-	// "StrIsIntlEqualA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrIsIntlEqualW();
-	// "StrIsIntlEqualW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrNCatA();
-	// "StrNCatA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrNCatW();
-	// "StrNCatW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrPBrkA();
-	// "StrPBrkA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrPBrkW();
-	// "StrPBrkW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRChrA();
-	// "StrRChrA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRChrIA();
-	// "StrRChrIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRChrIW();
-	// "StrRChrIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRChrW();
-	// "StrRChrW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRStrIA();
-	// "StrRStrIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRStrIW();
-	// "StrRStrIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRetToBSTR();
-	// "StrRetToBSTR" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRetToBufA();
-	// "StrRetToBufA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRetToBufW();
-	// "StrRetToBufW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRetToStrA();
-	// "StrRetToStrA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrRetToStrW();
-	// "StrRetToStrW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrSpnA();
-	// "StrSpnA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrSpnW();
-	// "StrSpnW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrStrA();
-	// "StrStrA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrStrIA();
-	// "StrStrIA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrStrIW();
-	// "StrStrIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrStrNIW();
-	// "StrStrNIW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrStrNW();
-	// "StrStrNW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrStrW();
-	// "StrStrW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrToInt64ExA();
-	// "StrToInt64ExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrToInt64ExW();
-	// "StrToInt64ExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrToIntA();
-	// "StrToIntA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrToIntExA();
-	// "StrToIntExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrToIntExW();
-	// "StrToIntExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrToIntW();
-	// "StrToIntW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrTrimA();
-	// "StrTrimA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StrTrimW();
-	// "StrTrimW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlApplySchemeA();
-	// "UrlApplySchemeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlApplySchemeW();
-	// "UrlApplySchemeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCanonicalizeA();
-	// "UrlCanonicalizeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCanonicalizeW();
-	// "UrlCanonicalizeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCombineA();
-	// "UrlCombineA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCombineW();
-	// "UrlCombineW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCompareA();
-	// "UrlCompareA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCompareW();
-	// "UrlCompareW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCreateFromPathA();
-	// "UrlCreateFromPathA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlCreateFromPathW();
-	// "UrlCreateFromPathW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlEscapeA();
-	// "UrlEscapeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlEscapeW();
-	// "UrlEscapeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlFixupW();
-	// "UrlFixupW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlGetLocationA();
-	// "UrlGetLocationA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlGetLocationW();
-	// "UrlGetLocationW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlGetPartA();
-	// "UrlGetPartA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlGetPartW();
-	// "UrlGetPartW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlHashA();
-	// "UrlHashA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlHashW();
-	// "UrlHashW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlIsA();
-	// "UrlIsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlIsNoHistoryA();
-	// "UrlIsNoHistoryA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlIsNoHistoryW();
-	// "UrlIsNoHistoryW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlIsOpaqueA();
-	// "UrlIsOpaqueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlIsOpaqueW();
-	// "UrlIsOpaqueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlIsW();
-	// "UrlIsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlUnescapeA();
-	// "UrlUnescapeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UrlUnescapeW();
-	// "UrlUnescapeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WhichPlatform();
-	// "WhichPlatform" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall wnsprintfA();
-	// "wnsprintfA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall wnsprintfW();
-	// "wnsprintfW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall wvnsprintfA();
-	// "wvnsprintfA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall wvnsprintfW();
-	// "wvnsprintfW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "AssocCreate" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocGetPerceivedType" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocIsDangerous" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocQueryKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocQueryKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocQueryStringA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocQueryStringByKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocQueryStringByKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AssocQueryStringW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ChrCmpIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ChrCmpIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ColorAdjustLuma" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ColorHLSToRGB" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ColorRGBToHLS" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConnectToConnectionPoint" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DelayLoadFailureHook" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DllGetClassObject" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DllGetVersion" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GUIDFromStringW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAcceptLanguagesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAcceptLanguagesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetMenuPosFromID" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "HashData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_Copy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_Read" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_ReadPidl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_ReadStr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_Reset" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_Size" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_Write" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_WritePidl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IStream_WriteStr" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_AtomicRelease" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_Exec" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_GetSite" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_GetWindow" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_QueryService" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_QueryStatus" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_Set" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IUnknown_SetSite" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IntlStrEqWorkerA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IntlStrEqWorkerW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsCharSpaceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsCharSpaceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsInternetESCEnabled" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsOS" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MLLoadLibraryA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MLLoadLibraryW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "N/A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ParseURLA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ParseURLW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathAddBackslashA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathAddBackslashW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathAddExtensionA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathAddExtensionW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathAppendA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathAppendW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathBuildRootA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathBuildRootW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCanonicalizeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCanonicalizeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCombineA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCombineW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCommonPrefixA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCommonPrefixW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCompactPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCompactPathExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCompactPathExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCompactPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCreateFromUrlA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCreateFromUrlAlloc" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathCreateFromUrlW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFileExistsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFileExistsAndAttributesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFileExistsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindExtensionA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindExtensionW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindFileNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindFileNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindNextComponentA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindNextComponentW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindOnPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindOnPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindSuffixArrayA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathFindSuffixArrayW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathGetArgsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathGetArgsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathGetCharTypeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathGetCharTypeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathGetDriveNumberA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathGetDriveNumberW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsContentTypeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsContentTypeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsDirectoryA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsDirectoryEmptyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsDirectoryEmptyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsDirectoryW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsFileSpecA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsFileSpecW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsLFNFileSpecA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsLFNFileSpecW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsNetworkPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsNetworkPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsPrefixA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsPrefixW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsRelativeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsRelativeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsRootA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsRootW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsSameRootA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsSameRootW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsSystemFolderA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsSystemFolderW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsUNCA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsUNCServerA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsUNCServerShareA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsUNCServerShareW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsUNCServerW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsUNCW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsURLA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathIsURLW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMakePrettyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMakePrettyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMakeSystemFolderA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMakeSystemFolderW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMatchSpecA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMatchSpecExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMatchSpecExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathMatchSpecW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathParseIconLocationA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathParseIconLocationW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathQuoteSpacesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathQuoteSpacesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRelativePathToA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRelativePathToW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveArgsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveArgsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveBackslashA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveBackslashW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveBlanksA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveBlanksW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveExtensionA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveExtensionW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveFileSpecA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRemoveFileSpecW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRenameExtensionA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathRenameExtensionW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathSearchAndQualifyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathSearchAndQualifyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathSetDlgItemPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathSetDlgItemPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathSkipRootA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathSkipRootW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathStripPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathStripPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathStripToRootA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathStripToRootW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUnExpandEnvStringsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUnExpandEnvStringsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUndecorateA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUndecorateW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUnmakeSystemFolderA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUnmakeSystemFolderW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUnquoteSpacesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PathUnquoteSpacesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QISearch" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHAllocShared" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHAnsiToAnsi" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHAnsiToUnicode" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHAutoComplete" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCopyKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCopyKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateMemStream" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateShellPalette" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateStreamOnFileA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateStreamOnFileEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateStreamOnFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateStreamWrapper" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateThread" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateThreadRef" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateThreadWithHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHCreateWorkerWindowW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteEmptyKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteEmptyKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteOrphanKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteOrphanKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHDeleteValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHEnumKeyExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHEnumKeyExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHEnumValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHEnumValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHFormatDateTimeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHFormatDateTimeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHFreeShared" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHGetInverseCMAP" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHGetThreadRef" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHGetValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHGetValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHGetViewStatePropertyBag" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHIsChildOrSelf" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHIsLowMemoryMachine" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHLoadIndirectString" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHLockShared" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHMessageBoxCheckA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHMessageBoxCheckW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHOpenRegStream2A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHOpenRegStream2W" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHOpenRegStreamA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHOpenRegStreamW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHPackDispParamsV" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHPinDllOfCLSID" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHPropertyBag_ReadStrAlloc" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHPropertyBag_WriteBSTR" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHQueryInfoKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHQueryInfoKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHQueryValueExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHQueryValueExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegCloseUSKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegCreateUSKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegCreateUSKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegDeleteEmptyUSKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegDeleteEmptyUSKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegDeleteUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegDeleteUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegDuplicateHKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegEnumUSKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegEnumUSKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegEnumUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegEnumUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetBoolUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetBoolUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetBoolValueFromHKCUHKLM" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetIntW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetValueFromHKCUHKLM" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegGetValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegOpenUSKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegOpenUSKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegQueryInfoUSKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegQueryInfoUSKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegQueryUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegQueryUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegSetPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegSetPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegSetUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegSetUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegWriteUSValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegWriteUSValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRegisterValidateTemplate" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHReleaseThreadRef" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHRunIndirectRegClientCommand" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHSendMessageBroadcastA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHSendMessageBroadcastW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHSetThreadRef" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHSetValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHSetValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHSkipJunction" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHStrDupA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHStrDupW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHStripMneumonicA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHStripMneumonicW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHUnicodeToAnsi" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHUnicodeToAnsiCP" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHUnicodeToUnicode" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SHUnlockShared" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ShellMessageBoxA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ShellMessageBoxW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCSpnA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCSpnIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCSpnIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCSpnW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCatBuffA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCatBuffW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCatChainW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCatW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrChrA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrChrIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrChrIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrChrNIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrChrNW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrChrW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpCA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpCW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpICA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpICW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpLogicalW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNCA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNCW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNICA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNICW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpNW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCmpW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCpyNW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrCpyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrDupA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrDupW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFormatByteSize64A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFormatByteSizeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFormatByteSizeEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFormatByteSizeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFormatKBSizeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFormatKBSizeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFromTimeIntervalA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrFromTimeIntervalW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrIsIntlEqualA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrIsIntlEqualW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrNCatA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrNCatW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrPBrkA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrPBrkW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRChrA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRChrIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRChrIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRChrW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRStrIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRStrIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRetToBSTR" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRetToBufA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRetToBufW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRetToStrA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrRetToStrW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrSpnA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrSpnW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrStrA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrStrIA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrStrIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrStrNIW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrStrNW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrStrW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrToInt64ExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrToInt64ExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrToIntA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrToIntExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrToIntExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrToIntW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrTrimA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StrTrimW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlApplySchemeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlApplySchemeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCanonicalizeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCanonicalizeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCombineA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCombineW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCompareA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCompareW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCreateFromPathA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlCreateFromPathW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlEscapeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlEscapeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlFixupW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlGetLocationA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlGetLocationW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlGetPartA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlGetPartW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlHashA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlHashW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlIsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlIsNoHistoryA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlIsNoHistoryW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlIsOpaqueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlIsOpaqueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlIsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlUnescapeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UrlUnescapeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WhichPlatform" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "wnsprintfA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "wnsprintfW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "wvnsprintfA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "wvnsprintfW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
 });
 module.exports = shlwapi;

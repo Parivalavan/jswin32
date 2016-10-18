@@ -10,2570 +10,7685 @@ const ffi = require('ffi');
 const iconv = require('iconv-lite');
 
 
-// init
+
 var advapi32 = ffi.Library( "advapi32.dll" ,
 {
-	// int __stdcall A_SHAFinal();
-	// "A_SHAFinal" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall A_SHAInit();
-	// "A_SHAInit" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall A_SHAUpdate();
-	// "A_SHAUpdate" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AbortSystemShutdownA();
-	// "AbortSystemShutdownA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AbortSystemShutdownW();
-	// "AbortSystemShutdownW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheck();
-	// "AccessCheck" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckAndAuditAlarmA();
-	// "AccessCheckAndAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckAndAuditAlarmW();
-	// "AccessCheckAndAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByType();
-	// "AccessCheckByType" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeAndAuditAlarmA();
-	// "AccessCheckByTypeAndAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeAndAuditAlarmW();
-	// "AccessCheckByTypeAndAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeResultList();
-	// "AccessCheckByTypeResultList" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeResultListAndAuditAlarmA();
-	// "AccessCheckByTypeResultListAndAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeResultListAndAuditAlarmByHandleA();
-	// "AccessCheckByTypeResultListAndAuditAlarmByHandleA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeResultListAndAuditAlarmByHandleW();
-	// "AccessCheckByTypeResultListAndAuditAlarmByHandleW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AccessCheckByTypeResultListAndAuditAlarmW();
-	// "AccessCheckByTypeResultListAndAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAccessAllowedAce();
-	// "AddAccessAllowedAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAccessAllowedAceEx();
-	// "AddAccessAllowedAceEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAccessAllowedObjectAce();
-	// "AddAccessAllowedObjectAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAccessDeniedAce();
-	// "AddAccessDeniedAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAccessDeniedAceEx();
-	// "AddAccessDeniedAceEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAccessDeniedObjectAce();
-	// "AddAccessDeniedObjectAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAce();
-	// "AddAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAuditAccessAce();
-	// "AddAuditAccessAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAuditAccessAceEx();
-	// "AddAuditAccessAceEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddAuditAccessObjectAce();
-	// "AddAuditAccessObjectAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddConditionalAce();
-	// "AddConditionalAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddMandatoryAce();
-	// "AddMandatoryAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddUsersToEncryptedFile();
-	// "AddUsersToEncryptedFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AddUsersToEncryptedFileEx();
-	// "AddUsersToEncryptedFileEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AdjustTokenGroups();
-	// "AdjustTokenGroups" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AdjustTokenPrivileges();
-	// "AdjustTokenPrivileges" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AllocateAndInitializeSid();
-	// "AllocateAndInitializeSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AllocateLocallyUniqueId();
-	// "AllocateLocallyUniqueId" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AreAllAccessesGranted();
-	// "AreAllAccessesGranted" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AreAnyAccessesGranted();
-	// "AreAnyAccessesGranted" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditComputeEffectivePolicyBySid();
-	// "AuditComputeEffectivePolicyBySid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditComputeEffectivePolicyByToken();
-	// "AuditComputeEffectivePolicyByToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditEnumerateCategories();
-	// "AuditEnumerateCategories" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditEnumeratePerUserPolicy();
-	// "AuditEnumeratePerUserPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditEnumerateSubCategories();
-	// "AuditEnumerateSubCategories" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditFree();
-	// "AuditFree" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditLookupCategoryGuidFromCategoryId();
-	// "AuditLookupCategoryGuidFromCategoryId" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditLookupCategoryIdFromCategoryGuid();
-	// "AuditLookupCategoryIdFromCategoryGuid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditLookupCategoryNameA();
-	// "AuditLookupCategoryNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditLookupCategoryNameW();
-	// "AuditLookupCategoryNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditLookupSubCategoryNameA();
-	// "AuditLookupSubCategoryNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditLookupSubCategoryNameW();
-	// "AuditLookupSubCategoryNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditQueryGlobalSaclA();
-	// "AuditQueryGlobalSaclA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditQueryGlobalSaclW();
-	// "AuditQueryGlobalSaclW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditQueryPerUserPolicy();
-	// "AuditQueryPerUserPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditQuerySecurity();
-	// "AuditQuerySecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditQuerySystemPolicy();
-	// "AuditQuerySystemPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditSetGlobalSaclA();
-	// "AuditSetGlobalSaclA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditSetGlobalSaclW();
-	// "AuditSetGlobalSaclW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditSetPerUserPolicy();
-	// "AuditSetPerUserPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditSetSecurity();
-	// "AuditSetSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall AuditSetSystemPolicy();
-	// "AuditSetSystemPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BackupEventLogA();
-	// "BackupEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BackupEventLogW();
-	// "BackupEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegCloseKey();
-	// "BaseRegCloseKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegCreateKey();
-	// "BaseRegCreateKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegDeleteKeyEx();
-	// "BaseRegDeleteKeyEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegDeleteValue();
-	// "BaseRegDeleteValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegFlushKey();
-	// "BaseRegFlushKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegGetVersion();
-	// "BaseRegGetVersion" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegLoadKey();
-	// "BaseRegLoadKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegOpenKey();
-	// "BaseRegOpenKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegRestoreKey();
-	// "BaseRegRestoreKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegSaveKeyEx();
-	// "BaseRegSaveKeyEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegSetKeySecurity();
-	// "BaseRegSetKeySecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegSetValue();
-	// "BaseRegSetValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BaseRegUnLoadKey();
-	// "BaseRegUnLoadKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildExplicitAccessWithNameA();
-	// "BuildExplicitAccessWithNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildExplicitAccessWithNameW();
-	// "BuildExplicitAccessWithNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildImpersonateExplicitAccessWithNameA();
-	// "BuildImpersonateExplicitAccessWithNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildImpersonateExplicitAccessWithNameW();
-	// "BuildImpersonateExplicitAccessWithNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildImpersonateTrusteeA();
-	// "BuildImpersonateTrusteeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildImpersonateTrusteeW();
-	// "BuildImpersonateTrusteeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildSecurityDescriptorA();
-	// "BuildSecurityDescriptorA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildSecurityDescriptorW();
-	// "BuildSecurityDescriptorW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithNameA();
-	// "BuildTrusteeWithNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithNameW();
-	// "BuildTrusteeWithNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithObjectsAndNameA();
-	// "BuildTrusteeWithObjectsAndNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithObjectsAndNameW();
-	// "BuildTrusteeWithObjectsAndNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithObjectsAndSidA();
-	// "BuildTrusteeWithObjectsAndSidA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithObjectsAndSidW();
-	// "BuildTrusteeWithObjectsAndSidW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithSidA();
-	// "BuildTrusteeWithSidA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall BuildTrusteeWithSidW();
-	// "BuildTrusteeWithSidW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CancelOverlappedAccess();
-	// "CancelOverlappedAccess" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ChangeServiceConfig2A();
-	// "ChangeServiceConfig2A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ChangeServiceConfig2W();
-	// "ChangeServiceConfig2W" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ChangeServiceConfigA();
-	// "ChangeServiceConfigA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ChangeServiceConfigW();
-	// "ChangeServiceConfigW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CheckForHiberboot();
-	// "CheckForHiberboot" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CheckTokenMembership();
-	// "CheckTokenMembership" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ClearEventLogA();
-	// "ClearEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ClearEventLogW();
-	// "ClearEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CloseCodeAuthzLevel();
-	// "CloseCodeAuthzLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CloseEncryptedFileRaw();
-	// "CloseEncryptedFileRaw" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CloseEventLog();
-	// "CloseEventLog" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CloseServiceHandle();
-	// "CloseServiceHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CloseThreadWaitChainSession();
-	// "CloseThreadWaitChainSession" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CloseTrace();
-	// "CloseTrace" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CommandLineFromMsiDescriptor();
-	// "CommandLineFromMsiDescriptor" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ComputeAccessTokenFromCodeAuthzLevel();
-	// "ComputeAccessTokenFromCodeAuthzLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ControlService();
-	// "ControlService" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ControlServiceExA();
-	// "ControlServiceExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ControlServiceExW();
-	// "ControlServiceExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ControlTraceA();
-	// "ControlTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ControlTraceW();
-	// "ControlTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertAccessToSecurityDescriptorA();
-	// "ConvertAccessToSecurityDescriptorA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertAccessToSecurityDescriptorW();
-	// "ConvertAccessToSecurityDescriptorW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSDToStringSDDomainW();
-	// "ConvertSDToStringSDDomainW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSDToStringSDRootDomainA();
-	// "ConvertSDToStringSDRootDomainA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSDToStringSDRootDomainW();
-	// "ConvertSDToStringSDRootDomainW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSecurityDescriptorToAccessA();
-	// "ConvertSecurityDescriptorToAccessA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSecurityDescriptorToAccessNamedA();
-	// "ConvertSecurityDescriptorToAccessNamedA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSecurityDescriptorToAccessNamedW();
-	// "ConvertSecurityDescriptorToAccessNamedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSecurityDescriptorToAccessW();
-	// "ConvertSecurityDescriptorToAccessW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSecurityDescriptorToStringSecurityDescriptorA();
-	// "ConvertSecurityDescriptorToStringSecurityDescriptorA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSecurityDescriptorToStringSecurityDescriptorW();
-	// "ConvertSecurityDescriptorToStringSecurityDescriptorW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSidToStringSidA();
-	// "ConvertSidToStringSidA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertSidToStringSidW();
-	// "ConvertSidToStringSidW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSDToSDDomainA();
-	// "ConvertStringSDToSDDomainA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSDToSDDomainW();
-	// "ConvertStringSDToSDDomainW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSDToSDRootDomainA();
-	// "ConvertStringSDToSDRootDomainA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSDToSDRootDomainW();
-	// "ConvertStringSDToSDRootDomainW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSecurityDescriptorToSecurityDescriptorA();
-	// "ConvertStringSecurityDescriptorToSecurityDescriptorA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSecurityDescriptorToSecurityDescriptorW();
-	// "ConvertStringSecurityDescriptorToSecurityDescriptorW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSidToSidA();
-	// "ConvertStringSidToSidA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertStringSidToSidW();
-	// "ConvertStringSidToSidW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ConvertToAutoInheritPrivateObjectSecurity();
-	// "ConvertToAutoInheritPrivateObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CopySid();
-	// "CopySid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateCodeAuthzLevel();
-	// "CreateCodeAuthzLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreatePrivateObjectSecurity();
-	// "CreatePrivateObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreatePrivateObjectSecurityEx();
-	// "CreatePrivateObjectSecurityEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreatePrivateObjectSecurityWithMultipleInheritance();
-	// "CreatePrivateObjectSecurityWithMultipleInheritance" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateProcessAsUserA();
-	// "CreateProcessAsUserA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateProcessAsUserW();
-	// "CreateProcessAsUserW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateProcessWithLogonW();
-	// "CreateProcessWithLogonW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateProcessWithTokenW();
-	// "CreateProcessWithTokenW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateRestrictedToken();
-	// "CreateRestrictedToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateServiceA();
-	// "CreateServiceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateServiceW();
-	// "CreateServiceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateTraceInstanceId();
-	// "CreateTraceInstanceId" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CreateWellKnownSid();
-	// "CreateWellKnownSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredBackupCredentials();
-	// "CredBackupCredentials" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredDeleteA();
-	// "CredDeleteA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredDeleteW();
-	// "CredDeleteW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredEncryptAndMarshalBinaryBlob();
-	// "CredEncryptAndMarshalBinaryBlob" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredEnumerateA();
-	// "CredEnumerateA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredEnumerateW();
-	// "CredEnumerateW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredFindBestCredentialA();
-	// "CredFindBestCredentialA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredFindBestCredentialW();
-	// "CredFindBestCredentialW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredFree();
-	// "CredFree" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredGetSessionTypes();
-	// "CredGetSessionTypes" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredGetTargetInfoA();
-	// "CredGetTargetInfoA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredGetTargetInfoW();
-	// "CredGetTargetInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredIsMarshaledCredentialA();
-	// "CredIsMarshaledCredentialA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredIsMarshaledCredentialW();
-	// "CredIsMarshaledCredentialW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredIsProtectedA();
-	// "CredIsProtectedA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredIsProtectedW();
-	// "CredIsProtectedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredMarshalCredentialA();
-	// "CredMarshalCredentialA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredMarshalCredentialW();
-	// "CredMarshalCredentialW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredProfileLoaded();
-	// "CredProfileLoaded" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredProfileLoadedEx();
-	// "CredProfileLoadedEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredProfileUnloaded();
-	// "CredProfileUnloaded" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredProtectA();
-	// "CredProtectA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredProtectW();
-	// "CredProtectW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredReadA();
-	// "CredReadA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredReadByTokenHandle();
-	// "CredReadByTokenHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredReadDomainCredentialsA();
-	// "CredReadDomainCredentialsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredReadDomainCredentialsW();
-	// "CredReadDomainCredentialsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredReadW();
-	// "CredReadW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredRenameA();
-	// "CredRenameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredRenameW();
-	// "CredRenameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredRestoreCredentials();
-	// "CredRestoreCredentials" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredUnmarshalCredentialA();
-	// "CredUnmarshalCredentialA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredUnmarshalCredentialW();
-	// "CredUnmarshalCredentialW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredUnprotectA();
-	// "CredUnprotectA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredUnprotectW();
-	// "CredUnprotectW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredWriteA();
-	// "CredWriteA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredWriteDomainCredentialsA();
-	// "CredWriteDomainCredentialsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredWriteDomainCredentialsW();
-	// "CredWriteDomainCredentialsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredWriteW();
-	// "CredWriteW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredpConvertCredential();
-	// "CredpConvertCredential" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredpConvertOneCredentialSize();
-	// "CredpConvertOneCredentialSize" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredpConvertTargetInfo();
-	// "CredpConvertTargetInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredpDecodeCredential();
-	// "CredpDecodeCredential" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredpEncodeCredential();
-	// "CredpEncodeCredential" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CredpEncodeSecret();
-	// "CredpEncodeSecret" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptAcquireContextA();
-	// "CryptAcquireContextA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptAcquireContextW();
-	// "CryptAcquireContextW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptContextAddRef();
-	// "CryptContextAddRef" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptCreateHash();
-	// "CryptCreateHash" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptDecrypt();
-	// "CryptDecrypt" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptDeriveKey();
-	// "CryptDeriveKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptDestroyHash();
-	// "CryptDestroyHash" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptDestroyKey();
-	// "CryptDestroyKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptDuplicateHash();
-	// "CryptDuplicateHash" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptDuplicateKey();
-	// "CryptDuplicateKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptEncrypt();
-	// "CryptEncrypt" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptEnumProviderTypesA();
-	// "CryptEnumProviderTypesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptEnumProviderTypesW();
-	// "CryptEnumProviderTypesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptEnumProvidersA();
-	// "CryptEnumProvidersA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptEnumProvidersW();
-	// "CryptEnumProvidersW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptExportKey();
-	// "CryptExportKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGenKey();
-	// "CryptGenKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGenRandom();
-	// "CryptGenRandom" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGetDefaultProviderA();
-	// "CryptGetDefaultProviderA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGetDefaultProviderW();
-	// "CryptGetDefaultProviderW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGetHashParam();
-	// "CryptGetHashParam" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGetKeyParam();
-	// "CryptGetKeyParam" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGetProvParam();
-	// "CryptGetProvParam" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptGetUserKey();
-	// "CryptGetUserKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptHashData();
-	// "CryptHashData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptHashSessionKey();
-	// "CryptHashSessionKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptImportKey();
-	// "CryptImportKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptReleaseContext();
-	// "CryptReleaseContext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetHashParam();
-	// "CryptSetHashParam" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetKeyParam();
-	// "CryptSetKeyParam" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetProvParam();
-	// "CryptSetProvParam" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetProviderA();
-	// "CryptSetProviderA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetProviderExA();
-	// "CryptSetProviderExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetProviderExW();
-	// "CryptSetProviderExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSetProviderW();
-	// "CryptSetProviderW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSignHashA();
-	// "CryptSignHashA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptSignHashW();
-	// "CryptSignHashW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptVerifySignatureA();
-	// "CryptVerifySignatureA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CryptVerifySignatureW();
-	// "CryptVerifySignatureW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall CveEventWrite();
-	// "CveEventWrite" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DecryptFileA();
-	// "DecryptFileA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DecryptFileW();
-	// "DecryptFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DeleteAce();
-	// "DeleteAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DeleteService();
-	// "DeleteService" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DeregisterEventSource();
-	// "DeregisterEventSource" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DestroyPrivateObjectSecurity();
-	// "DestroyPrivateObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DuplicateEncryptionInfoFile();
-	// "DuplicateEncryptionInfoFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DuplicateToken();
-	// "DuplicateToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall DuplicateTokenEx();
-	// "DuplicateTokenEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfBackupEventLogFileA();
-	// "ElfBackupEventLogFileA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfBackupEventLogFileW();
-	// "ElfBackupEventLogFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfChangeNotify();
-	// "ElfChangeNotify" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfClearEventLogFileA();
-	// "ElfClearEventLogFileA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfClearEventLogFileW();
-	// "ElfClearEventLogFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfCloseEventLog();
-	// "ElfCloseEventLog" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfDeregisterEventSource();
-	// "ElfDeregisterEventSource" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfFlushEventLog();
-	// "ElfFlushEventLog" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfNumberOfRecords();
-	// "ElfNumberOfRecords" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfOldestRecord();
-	// "ElfOldestRecord" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfOpenBackupEventLogA();
-	// "ElfOpenBackupEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfOpenBackupEventLogW();
-	// "ElfOpenBackupEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfOpenEventLogA();
-	// "ElfOpenEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfOpenEventLogW();
-	// "ElfOpenEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfReadEventLogA();
-	// "ElfReadEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfReadEventLogW();
-	// "ElfReadEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfRegisterEventSourceA();
-	// "ElfRegisterEventSourceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfRegisterEventSourceW();
-	// "ElfRegisterEventSourceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfReportEventA();
-	// "ElfReportEventA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfReportEventAndSourceW();
-	// "ElfReportEventAndSourceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ElfReportEventW();
-	// "ElfReportEventW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnableTrace();
-	// "EnableTrace" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnableTraceEx();
-	// "EnableTraceEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnableTraceEx2();
-	// "EnableTraceEx2" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EncryptFileA();
-	// "EncryptFileA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EncryptFileW();
-	// "EncryptFileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EncryptedFileKeyInfo();
-	// "EncryptedFileKeyInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EncryptionDisable();
-	// "EncryptionDisable" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumDependentServicesA();
-	// "EnumDependentServicesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumDependentServicesW();
-	// "EnumDependentServicesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumDynamicTimeZoneInformation();
-	// "EnumDynamicTimeZoneInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumServiceGroupW();
-	// "EnumServiceGroupW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumServicesStatusA();
-	// "EnumServicesStatusA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumServicesStatusExA();
-	// "EnumServicesStatusExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumServicesStatusExW();
-	// "EnumServicesStatusExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumServicesStatusW();
-	// "EnumServicesStatusW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateTraceGuids();
-	// "EnumerateTraceGuids" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EnumerateTraceGuidsEx();
-	// "EnumerateTraceGuidsEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EqualDomainSid();
-	// "EqualDomainSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EqualPrefixSid();
-	// "EqualPrefixSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EqualSid();
-	// "EqualSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventAccessControl();
-	// "EventAccessControl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventAccessQuery();
-	// "EventAccessQuery" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventAccessRemove();
-	// "EventAccessRemove" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventActivityIdControl();
-	// "EventActivityIdControl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventEnabled();
-	// "EventEnabled" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventProviderEnabled();
-	// "EventProviderEnabled" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventRegister();
-	// "EventRegister" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventSetInformation();
-	// "EventSetInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventUnregister();
-	// "EventUnregister" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventWrite();
-	// "EventWrite" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventWriteEndScenario();
-	// "EventWriteEndScenario" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventWriteEx();
-	// "EventWriteEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventWriteStartScenario();
-	// "EventWriteStartScenario" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventWriteString();
-	// "EventWriteString" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall EventWriteTransfer();
-	// "EventWriteTransfer" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FileEncryptionStatusA();
-	// "FileEncryptionStatusA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FileEncryptionStatusW();
-	// "FileEncryptionStatusW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FindFirstFreeAce();
-	// "FindFirstFreeAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FlushEfsCache();
-	// "FlushEfsCache" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FlushTraceA();
-	// "FlushTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FlushTraceW();
-	// "FlushTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FreeEncryptedFileKeyInfo();
-	// "FreeEncryptedFileKeyInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FreeEncryptedFileMetadata();
-	// "FreeEncryptedFileMetadata" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FreeEncryptionCertificateHashList();
-	// "FreeEncryptionCertificateHashList" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FreeInheritedFromArray();
-	// "FreeInheritedFromArray" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall FreeSid();
-	// "FreeSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAccessPermissionsForObjectA();
-	// "GetAccessPermissionsForObjectA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAccessPermissionsForObjectW();
-	// "GetAccessPermissionsForObjectW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAce();
-	// "GetAce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAclInformation();
-	// "GetAclInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAuditedPermissionsFromAclA();
-	// "GetAuditedPermissionsFromAclA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetAuditedPermissionsFromAclW();
-	// "GetAuditedPermissionsFromAclW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetCurrentHwProfileA();
-	// "GetCurrentHwProfileA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetCurrentHwProfileW();
-	// "GetCurrentHwProfileW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetDynamicTimeZoneInformationEffectiveYears();
-	// "GetDynamicTimeZoneInformationEffectiveYears" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetEffectiveRightsFromAclA();
-	// "GetEffectiveRightsFromAclA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetEffectiveRightsFromAclW();
-	// "GetEffectiveRightsFromAclW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetEncryptedFileMetadata();
-	// "GetEncryptedFileMetadata" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetEventLogInformation();
-	// "GetEventLogInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetExplicitEntriesFromAclA();
-	// "GetExplicitEntriesFromAclA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetExplicitEntriesFromAclW();
-	// "GetExplicitEntriesFromAclW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetFileSecurityA();
-	// "GetFileSecurityA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetFileSecurityW();
-	// "GetFileSecurityW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetInformationCodeAuthzLevelW();
-	// "GetInformationCodeAuthzLevelW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetInformationCodeAuthzPolicyW();
-	// "GetInformationCodeAuthzPolicyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetInheritanceSourceA();
-	// "GetInheritanceSourceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetInheritanceSourceW();
-	// "GetInheritanceSourceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetKernelObjectSecurity();
-	// "GetKernelObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetLengthSid();
-	// "GetLengthSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetLocalManagedApplicationData();
-	// "GetLocalManagedApplicationData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetLocalManagedApplications();
-	// "GetLocalManagedApplications" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetManagedApplicationCategories();
-	// "GetManagedApplicationCategories" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetManagedApplications();
-	// "GetManagedApplications" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetMultipleTrusteeA();
-	// "GetMultipleTrusteeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetMultipleTrusteeOperationA();
-	// "GetMultipleTrusteeOperationA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetMultipleTrusteeOperationW();
-	// "GetMultipleTrusteeOperationW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetMultipleTrusteeW();
-	// "GetMultipleTrusteeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetNamedSecurityInfoA();
-	// "GetNamedSecurityInfoA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetNamedSecurityInfoExA();
-	// "GetNamedSecurityInfoExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetNamedSecurityInfoExW();
-	// "GetNamedSecurityInfoExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetNamedSecurityInfoW();
-	// "GetNamedSecurityInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetNumberOfEventLogRecords();
-	// "GetNumberOfEventLogRecords" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetOldestEventLogRecord();
-	// "GetOldestEventLogRecord" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetOverlappedAccessResults();
-	// "GetOverlappedAccessResults" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetPrivateObjectSecurity();
-	// "GetPrivateObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorControl();
-	// "GetSecurityDescriptorControl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorDacl();
-	// "GetSecurityDescriptorDacl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorGroup();
-	// "GetSecurityDescriptorGroup" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorLength();
-	// "GetSecurityDescriptorLength" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorOwner();
-	// "GetSecurityDescriptorOwner" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorRMControl();
-	// "GetSecurityDescriptorRMControl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityDescriptorSacl();
-	// "GetSecurityDescriptorSacl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityInfo();
-	// "GetSecurityInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityInfoExA();
-	// "GetSecurityInfoExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSecurityInfoExW();
-	// "GetSecurityInfoExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetServiceDisplayNameA();
-	// "GetServiceDisplayNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetServiceDisplayNameW();
-	// "GetServiceDisplayNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetServiceKeyNameA();
-	// "GetServiceKeyNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetServiceKeyNameW();
-	// "GetServiceKeyNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSidIdentifierAuthority();
-	// "GetSidIdentifierAuthority" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSidLengthRequired();
-	// "GetSidLengthRequired" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSidSubAuthority();
-	// "GetSidSubAuthority" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetSidSubAuthorityCount();
-	// "GetSidSubAuthorityCount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetStringConditionFromBinary();
-	// "GetStringConditionFromBinary" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetThreadWaitChain();
-	// "GetThreadWaitChain" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTokenInformation();
-	// "GetTokenInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTraceEnableFlags();
-	// "GetTraceEnableFlags" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTraceEnableLevel();
-	// "GetTraceEnableLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTraceLoggerHandle();
-	// "GetTraceLoggerHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTrusteeFormA();
-	// "GetTrusteeFormA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTrusteeFormW();
-	// "GetTrusteeFormW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTrusteeNameA();
-	// "GetTrusteeNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTrusteeNameW();
-	// "GetTrusteeNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTrusteeTypeA();
-	// "GetTrusteeTypeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetTrusteeTypeW();
-	// "GetTrusteeTypeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetUserNameA();
-	// "GetUserNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetUserNameW();
-	// "GetUserNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall GetWindowsAccountDomainSid();
-	// "GetWindowsAccountDomainSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_QueryTagInformation();
-	// "I_QueryTagInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScGetCurrentGroupStateW();
-	// "I_ScGetCurrentGroupStateW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScIsSecurityProcess();
-	// "I_ScIsSecurityProcess" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScPnPGetServiceName();
-	// "I_ScPnPGetServiceName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScQueryServiceConfig();
-	// "I_ScQueryServiceConfig" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScRegisterPreshutdownRestart();
-	// "I_ScRegisterPreshutdownRestart" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScReparseServiceDatabase();
-	// "I_ScReparseServiceDatabase" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScSendPnPMessage();
-	// "I_ScSendPnPMessage" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScSendTSMessage();
-	// "I_ScSendTSMessage" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScSetServiceBitsA();
-	// "I_ScSetServiceBitsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScSetServiceBitsW();
-	// "I_ScSetServiceBitsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall I_ScValidatePnPService();
-	// "I_ScValidatePnPService" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IdentifyCodeAuthzLevelW();
-	// "IdentifyCodeAuthzLevelW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImpersonateAnonymousToken();
-	// "ImpersonateAnonymousToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImpersonateLoggedOnUser();
-	// "ImpersonateLoggedOnUser" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImpersonateNamedPipeClient();
-	// "ImpersonateNamedPipeClient" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ImpersonateSelf();
-	// "ImpersonateSelf" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitializeAcl();
-	// "InitializeAcl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitializeSecurityDescriptor();
-	// "InitializeSecurityDescriptor" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitializeSid();
-	// "InitializeSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitiateShutdownA();
-	// "InitiateShutdownA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitiateShutdownW();
-	// "InitiateShutdownW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitiateSystemShutdownA();
-	// "InitiateSystemShutdownA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitiateSystemShutdownExA();
-	// "InitiateSystemShutdownExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitiateSystemShutdownExW();
-	// "InitiateSystemShutdownExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InitiateSystemShutdownW();
-	// "InitiateSystemShutdownW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall InstallApplication();
-	// "InstallApplication" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsTextUnicode();
-	// "IsTextUnicode" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsTokenRestricted();
-	// "IsTokenRestricted" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsTokenUntrusted();
-	// "IsTokenUntrusted" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsValidAcl();
-	// "IsValidAcl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsValidRelativeSecurityDescriptor();
-	// "IsValidRelativeSecurityDescriptor" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsValidSecurityDescriptor();
-	// "IsValidSecurityDescriptor" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsValidSid();
-	// "IsValidSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall IsWellKnownSid();
-	// "IsWellKnownSid" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LockServiceDatabase();
-	// "LockServiceDatabase" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LogonUserA();
-	// "LogonUserA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LogonUserExA();
-	// "LogonUserExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LogonUserExExW();
-	// "LogonUserExExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LogonUserExW();
-	// "LogonUserExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LogonUserW();
-	// "LogonUserW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupAccountNameA();
-	// "LookupAccountNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupAccountNameW();
-	// "LookupAccountNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupAccountSidA();
-	// "LookupAccountSidA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupAccountSidW();
-	// "LookupAccountSidW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupPrivilegeDisplayNameA();
-	// "LookupPrivilegeDisplayNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupPrivilegeDisplayNameW();
-	// "LookupPrivilegeDisplayNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupPrivilegeNameA();
-	// "LookupPrivilegeNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupPrivilegeNameW();
-	// "LookupPrivilegeNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupPrivilegeValueA();
-	// "LookupPrivilegeValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupPrivilegeValueW();
-	// "LookupPrivilegeValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupSecurityDescriptorPartsA();
-	// "LookupSecurityDescriptorPartsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LookupSecurityDescriptorPartsW();
-	// "LookupSecurityDescriptorPartsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaAddAccountRights();
-	// "LsaAddAccountRights" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaAddPrivilegesToAccount();
-	// "LsaAddPrivilegesToAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaClearAuditLog();
-	// "LsaClearAuditLog" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaClose();
-	// "LsaClose" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaCreateAccount();
-	// "LsaCreateAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaCreateSecret();
-	// "LsaCreateSecret" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaCreateTrustedDomain();
-	// "LsaCreateTrustedDomain" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaCreateTrustedDomainEx();
-	// "LsaCreateTrustedDomainEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaDelete();
-	// "LsaDelete" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaDeleteTrustedDomain();
-	// "LsaDeleteTrustedDomain" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumerateAccountRights();
-	// "LsaEnumerateAccountRights" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumerateAccounts();
-	// "LsaEnumerateAccounts" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumerateAccountsWithUserRight();
-	// "LsaEnumerateAccountsWithUserRight" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumeratePrivileges();
-	// "LsaEnumeratePrivileges" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumeratePrivilegesOfAccount();
-	// "LsaEnumeratePrivilegesOfAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumerateTrustedDomains();
-	// "LsaEnumerateTrustedDomains" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaEnumerateTrustedDomainsEx();
-	// "LsaEnumerateTrustedDomainsEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaFreeMemory();
-	// "LsaFreeMemory" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaGetAppliedCAPIDs();
-	// "LsaGetAppliedCAPIDs" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaGetQuotasForAccount();
-	// "LsaGetQuotasForAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaGetRemoteUserName();
-	// "LsaGetRemoteUserName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaGetSystemAccessAccount();
-	// "LsaGetSystemAccessAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaGetUserName();
-	// "LsaGetUserName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaICLookupNames();
-	// "LsaICLookupNames" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaICLookupNamesWithCreds();
-	// "LsaICLookupNamesWithCreds" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaICLookupSids();
-	// "LsaICLookupSids" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaICLookupSidsWithCreds();
-	// "LsaICLookupSidsWithCreds" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupNames();
-	// "LsaLookupNames" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupNames2();
-	// "LsaLookupNames2" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupPrivilegeDisplayName();
-	// "LsaLookupPrivilegeDisplayName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupPrivilegeName();
-	// "LsaLookupPrivilegeName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupPrivilegeValue();
-	// "LsaLookupPrivilegeValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupSids();
-	// "LsaLookupSids" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaLookupSids2();
-	// "LsaLookupSids2" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaManageSidNameMapping();
-	// "LsaManageSidNameMapping" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaNtStatusToWinError();
-	// "LsaNtStatusToWinError" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaOpenAccount();
-	// "LsaOpenAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaOpenPolicy();
-	// "LsaOpenPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaOpenPolicySce();
-	// "LsaOpenPolicySce" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaOpenSecret();
-	// "LsaOpenSecret" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaOpenTrustedDomain();
-	// "LsaOpenTrustedDomain" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaOpenTrustedDomainByName();
-	// "LsaOpenTrustedDomainByName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryCAPs();
-	// "LsaQueryCAPs" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryDomainInformationPolicy();
-	// "LsaQueryDomainInformationPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryForestTrustInformation();
-	// "LsaQueryForestTrustInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryInfoTrustedDomain();
-	// "LsaQueryInfoTrustedDomain" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryInformationPolicy();
-	// "LsaQueryInformationPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQuerySecret();
-	// "LsaQuerySecret" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQuerySecurityObject();
-	// "LsaQuerySecurityObject" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryTrustedDomainInfo();
-	// "LsaQueryTrustedDomainInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaQueryTrustedDomainInfoByName();
-	// "LsaQueryTrustedDomainInfoByName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaRemoveAccountRights();
-	// "LsaRemoveAccountRights" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaRemovePrivilegesFromAccount();
-	// "LsaRemovePrivilegesFromAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaRetrievePrivateData();
-	// "LsaRetrievePrivateData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetCAPs();
-	// "LsaSetCAPs" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetDomainInformationPolicy();
-	// "LsaSetDomainInformationPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetForestTrustInformation();
-	// "LsaSetForestTrustInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetInformationPolicy();
-	// "LsaSetInformationPolicy" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetInformationTrustedDomain();
-	// "LsaSetInformationTrustedDomain" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetQuotasForAccount();
-	// "LsaSetQuotasForAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetSecret();
-	// "LsaSetSecret" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetSecurityObject();
-	// "LsaSetSecurityObject" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetSystemAccessAccount();
-	// "LsaSetSystemAccessAccount" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetTrustedDomainInfoByName();
-	// "LsaSetTrustedDomainInfoByName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaSetTrustedDomainInformation();
-	// "LsaSetTrustedDomainInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall LsaStorePrivateData();
-	// "LsaStorePrivateData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MD4Final();
-	// "MD4Final" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MD4Init();
-	// "MD4Init" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MD4Update();
-	// "MD4Update" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MD5Final();
-	// "MD5Final" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MD5Init();
-	// "MD5Init" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MD5Update();
-	// "MD5Update" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MIDL_user_free_Ext();
-	// "MIDL_user_free_Ext" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MSChapSrvChangePassword();
-	// "MSChapSrvChangePassword" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MSChapSrvChangePassword2();
-	// "MSChapSrvChangePassword2" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MakeAbsoluteSD();
-	// "MakeAbsoluteSD" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MakeAbsoluteSD2();
-	// "MakeAbsoluteSD2" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MakeSelfRelativeSD();
-	// "MakeSelfRelativeSD" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall MapGenericMask();
-	// "MapGenericMask" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall N/A();
-	// "N/A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall NotifyBootConfigStatus();
-	// "NotifyBootConfigStatus" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall NotifyChangeEventLog();
-	// "NotifyChangeEventLog" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall NotifyServiceStatusChange();
-	// "NotifyServiceStatusChange" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall NotifyServiceStatusChangeA();
-	// "NotifyServiceStatusChangeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall NotifyServiceStatusChangeW();
-	// "NotifyServiceStatusChangeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall NpGetUserName();
-	// "NpGetUserName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectCloseAuditAlarmA();
-	// "ObjectCloseAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectCloseAuditAlarmW();
-	// "ObjectCloseAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectDeleteAuditAlarmA();
-	// "ObjectDeleteAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectDeleteAuditAlarmW();
-	// "ObjectDeleteAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectOpenAuditAlarmA();
-	// "ObjectOpenAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectOpenAuditAlarmW();
-	// "ObjectOpenAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectPrivilegeAuditAlarmA();
-	// "ObjectPrivilegeAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ObjectPrivilegeAuditAlarmW();
-	// "ObjectPrivilegeAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenBackupEventLogA();
-	// "OpenBackupEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenBackupEventLogW();
-	// "OpenBackupEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenEncryptedFileRawA();
-	// "OpenEncryptedFileRawA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenEncryptedFileRawW();
-	// "OpenEncryptedFileRawW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenEventLogA();
-	// "OpenEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenEventLogW();
-	// "OpenEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenProcessToken();
-	// "OpenProcessToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenSCManagerA();
-	// "OpenSCManagerA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenSCManagerW();
-	// "OpenSCManagerW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenServiceA();
-	// "OpenServiceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenServiceW();
-	// "OpenServiceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenThreadToken();
-	// "OpenThreadToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenThreadWaitChainSession();
-	// "OpenThreadWaitChainSession" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenTraceA();
-	// "OpenTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OpenTraceW();
-	// "OpenTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OperationEnd();
-	// "OperationEnd" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall OperationStart();
-	// "OperationStart" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfAddCounters();
-	// "PerfAddCounters" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfCloseQueryHandle();
-	// "PerfCloseQueryHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfCreateInstance();
-	// "PerfCreateInstance" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfDecrementULongCounterValue();
-	// "PerfDecrementULongCounterValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfDecrementULongLongCounterValue();
-	// "PerfDecrementULongLongCounterValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfDeleteCounters();
-	// "PerfDeleteCounters" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfDeleteInstance();
-	// "PerfDeleteInstance" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfEnumerateCounterSet();
-	// "PerfEnumerateCounterSet" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfEnumerateCounterSetInstances();
-	// "PerfEnumerateCounterSetInstances" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfIncrementULongCounterValue();
-	// "PerfIncrementULongCounterValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfIncrementULongLongCounterValue();
-	// "PerfIncrementULongLongCounterValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfOpenQueryHandle();
-	// "PerfOpenQueryHandle" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfQueryCounterData();
-	// "PerfQueryCounterData" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfQueryCounterInfo();
-	// "PerfQueryCounterInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfQueryCounterSetRegistrationInfo();
-	// "PerfQueryCounterSetRegistrationInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfQueryInstance();
-	// "PerfQueryInstance" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfRegCloseKey();
-	// "PerfRegCloseKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfRegEnumKey();
-	// "PerfRegEnumKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfRegEnumValue();
-	// "PerfRegEnumValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfRegQueryInfoKey();
-	// "PerfRegQueryInfoKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfRegQueryValue();
-	// "PerfRegQueryValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfRegSetValue();
-	// "PerfRegSetValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfSetCounterRefValue();
-	// "PerfSetCounterRefValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfSetCounterSetInfo();
-	// "PerfSetCounterSetInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfSetULongCounterValue();
-	// "PerfSetULongCounterValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfSetULongLongCounterValue();
-	// "PerfSetULongLongCounterValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfStartProvider();
-	// "PerfStartProvider" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfStartProviderEx();
-	// "PerfStartProviderEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PerfStopProvider();
-	// "PerfStopProvider" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PrivilegeCheck();
-	// "PrivilegeCheck" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PrivilegedServiceAuditAlarmA();
-	// "PrivilegedServiceAuditAlarmA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall PrivilegedServiceAuditAlarmW();
-	// "PrivilegedServiceAuditAlarmW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ProcessIdleTasks();
-	// "ProcessIdleTasks" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ProcessIdleTasksW();
-	// "ProcessIdleTasksW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ProcessTrace();
-	// "ProcessTrace" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryAllTracesA();
-	// "QueryAllTracesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryAllTracesW();
-	// "QueryAllTracesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryLocalUserServiceName();
-	// "QueryLocalUserServiceName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryRecoveryAgentsOnEncryptedFile();
-	// "QueryRecoveryAgentsOnEncryptedFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QuerySecurityAccessMask();
-	// "QuerySecurityAccessMask" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceConfig2A();
-	// "QueryServiceConfig2A" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceConfig2W();
-	// "QueryServiceConfig2W" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceConfigA();
-	// "QueryServiceConfigA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceConfigW();
-	// "QueryServiceConfigW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceDynamicInformation();
-	// "QueryServiceDynamicInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceLockStatusA();
-	// "QueryServiceLockStatusA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceLockStatusW();
-	// "QueryServiceLockStatusW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceObjectSecurity();
-	// "QueryServiceObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceStatus();
-	// "QueryServiceStatus" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryServiceStatusEx();
-	// "QueryServiceStatusEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryTraceA();
-	// "QueryTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryTraceW();
-	// "QueryTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryUserServiceName();
-	// "QueryUserServiceName" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall QueryUsersOnEncryptedFile();
-	// "QueryUsersOnEncryptedFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ReadEncryptedFileRaw();
-	// "ReadEncryptedFileRaw" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ReadEventLogA();
-	// "ReadEventLogA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ReadEventLogW();
-	// "ReadEventLogW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCloseKey();
-	// "RegCloseKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegConnectRegistryA();
-	// "RegConnectRegistryA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegConnectRegistryExA();
-	// "RegConnectRegistryExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegConnectRegistryExW();
-	// "RegConnectRegistryExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegConnectRegistryW();
-	// "RegConnectRegistryW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCopyTreeA();
-	// "RegCopyTreeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCopyTreeW();
-	// "RegCopyTreeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCreateKeyA();
-	// "RegCreateKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCreateKeyExA();
-	// "RegCreateKeyExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCreateKeyExW();
-	// "RegCreateKeyExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCreateKeyTransactedA();
-	// "RegCreateKeyTransactedA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCreateKeyTransactedW();
-	// "RegCreateKeyTransactedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegCreateKeyW();
-	// "RegCreateKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyA();
-	// "RegDeleteKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyExA();
-	// "RegDeleteKeyExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyExW();
-	// "RegDeleteKeyExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyTransactedA();
-	// "RegDeleteKeyTransactedA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyTransactedW();
-	// "RegDeleteKeyTransactedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyValueA();
-	// "RegDeleteKeyValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyValueW();
-	// "RegDeleteKeyValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteKeyW();
-	// "RegDeleteKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteTreeA();
-	// "RegDeleteTreeA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteTreeW();
-	// "RegDeleteTreeW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteValueA();
-	// "RegDeleteValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDeleteValueW();
-	// "RegDeleteValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDisablePredefinedCache();
-	// "RegDisablePredefinedCache" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDisablePredefinedCacheEx();
-	// "RegDisablePredefinedCacheEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegDisableReflectionKey();
-	// "RegDisableReflectionKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnableReflectionKey();
-	// "RegEnableReflectionKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnumKeyA();
-	// "RegEnumKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnumKeyExA();
-	// "RegEnumKeyExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnumKeyExW();
-	// "RegEnumKeyExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnumKeyW();
-	// "RegEnumKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnumValueA();
-	// "RegEnumValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegEnumValueW();
-	// "RegEnumValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegFlushKey();
-	// "RegFlushKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegGetKeySecurity();
-	// "RegGetKeySecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegGetValueA();
-	// "RegGetValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegGetValueW();
-	// "RegGetValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegLoadAppKeyA();
-	// "RegLoadAppKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegLoadAppKeyW();
-	// "RegLoadAppKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegLoadKeyA();
-	// "RegLoadKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegLoadKeyW();
-	// "RegLoadKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegLoadMUIStringA();
-	// "RegLoadMUIStringA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegLoadMUIStringW();
-	// "RegLoadMUIStringW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegNotifyChangeKeyValue();
-	// "RegNotifyChangeKeyValue" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenCurrentUser();
-	// "RegOpenCurrentUser" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenKeyA();
-	// "RegOpenKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenKeyExA();
-	// "RegOpenKeyExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenKeyExW();
-	// "RegOpenKeyExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenKeyTransactedA();
-	// "RegOpenKeyTransactedA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenKeyTransactedW();
-	// "RegOpenKeyTransactedW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenKeyW();
-	// "RegOpenKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOpenUserClassesRoot();
-	// "RegOpenUserClassesRoot" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegOverridePredefKey();
-	// "RegOverridePredefKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryInfoKeyA();
-	// "RegQueryInfoKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryInfoKeyW();
-	// "RegQueryInfoKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryMultipleValuesA();
-	// "RegQueryMultipleValuesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryMultipleValuesW();
-	// "RegQueryMultipleValuesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryReflectionKey();
-	// "RegQueryReflectionKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryValueA();
-	// "RegQueryValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryValueExA();
-	// "RegQueryValueExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryValueExW();
-	// "RegQueryValueExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegQueryValueW();
-	// "RegQueryValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegRenameKey();
-	// "RegRenameKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegReplaceKeyA();
-	// "RegReplaceKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegReplaceKeyW();
-	// "RegReplaceKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegRestoreKeyA();
-	// "RegRestoreKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegRestoreKeyW();
-	// "RegRestoreKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSaveKeyA();
-	// "RegSaveKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSaveKeyExA();
-	// "RegSaveKeyExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSaveKeyExW();
-	// "RegSaveKeyExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSaveKeyW();
-	// "RegSaveKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetKeySecurity();
-	// "RegSetKeySecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetKeyValueA();
-	// "RegSetKeyValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetKeyValueW();
-	// "RegSetKeyValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetValueA();
-	// "RegSetValueA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetValueExA();
-	// "RegSetValueExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetValueExW();
-	// "RegSetValueExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegSetValueW();
-	// "RegSetValueW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegUnLoadKeyA();
-	// "RegUnLoadKeyA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegUnLoadKeyW();
-	// "RegUnLoadKeyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterEventSourceA();
-	// "RegisterEventSourceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterEventSourceW();
-	// "RegisterEventSourceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterIdleTask();
-	// "RegisterIdleTask" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterServiceCtrlHandlerA();
-	// "RegisterServiceCtrlHandlerA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterServiceCtrlHandlerExA();
-	// "RegisterServiceCtrlHandlerExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterServiceCtrlHandlerExW();
-	// "RegisterServiceCtrlHandlerExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterServiceCtrlHandlerW();
-	// "RegisterServiceCtrlHandlerW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterTraceGuidsA();
-	// "RegisterTraceGuidsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterTraceGuidsW();
-	// "RegisterTraceGuidsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RegisterWaitChainCOMCallback();
-	// "RegisterWaitChainCOMCallback" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoteRegEnumKeyWrapper();
-	// "RemoteRegEnumKeyWrapper" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoteRegEnumValueWrapper();
-	// "RemoteRegEnumValueWrapper" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoteRegQueryInfoKeyWrapper();
-	// "RemoteRegQueryInfoKeyWrapper" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoteRegQueryValueWrapper();
-	// "RemoteRegQueryValueWrapper" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoveTraceCallback();
-	// "RemoveTraceCallback" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RemoveUsersFromEncryptedFile();
-	// "RemoveUsersFromEncryptedFile" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ReportEventA();
-	// "ReportEventA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall ReportEventW();
-	// "ReportEventW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall RevertToSelf();
-	// "RevertToSelf" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SafeBaseRegGetKeySecurity();
-	// "SafeBaseRegGetKeySecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferCloseLevel();
-	// "SaferCloseLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferComputeTokenFromLevel();
-	// "SaferComputeTokenFromLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferCreateLevel();
-	// "SaferCreateLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferGetLevelInformation();
-	// "SaferGetLevelInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferGetPolicyInformation();
-	// "SaferGetPolicyInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferIdentifyLevel();
-	// "SaferIdentifyLevel" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferRecordEventLogEntry();
-	// "SaferRecordEventLogEntry" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferSetLevelInformation();
-	// "SaferSetLevelInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferSetPolicyInformation();
-	// "SaferSetPolicyInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiChangeRegistryScope();
-	// "SaferiChangeRegistryScope" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiCompareTokenLevels();
-	// "SaferiCompareTokenLevels" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiIsDllAllowed();
-	// "SaferiIsDllAllowed" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiIsExecutableFileType();
-	// "SaferiIsExecutableFileType" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiPopulateDefaultsInRegistry();
-	// "SaferiPopulateDefaultsInRegistry" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiRecordEventLogEntry();
-	// "SaferiRecordEventLogEntry" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SaferiSearchMatchingHashRules();
-	// "SaferiSearchMatchingHashRules" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetAclInformation();
-	// "SetAclInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEncryptedFileMetadata();
-	// "SetEncryptedFileMetadata" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEntriesInAccessListA();
-	// "SetEntriesInAccessListA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEntriesInAccessListW();
-	// "SetEntriesInAccessListW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEntriesInAclA();
-	// "SetEntriesInAclA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEntriesInAclW();
-	// "SetEntriesInAclW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEntriesInAuditListA();
-	// "SetEntriesInAuditListA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetEntriesInAuditListW();
-	// "SetEntriesInAuditListW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetFileSecurityA();
-	// "SetFileSecurityA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetFileSecurityW();
-	// "SetFileSecurityW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetInformationCodeAuthzLevelW();
-	// "SetInformationCodeAuthzLevelW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetInformationCodeAuthzPolicyW();
-	// "SetInformationCodeAuthzPolicyW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetKernelObjectSecurity();
-	// "SetKernelObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetNamedSecurityInfoA();
-	// "SetNamedSecurityInfoA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetNamedSecurityInfoExA();
-	// "SetNamedSecurityInfoExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetNamedSecurityInfoExW();
-	// "SetNamedSecurityInfoExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetNamedSecurityInfoW();
-	// "SetNamedSecurityInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetPrivateObjectSecurity();
-	// "SetPrivateObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetPrivateObjectSecurityEx();
-	// "SetPrivateObjectSecurityEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityAccessMask();
-	// "SetSecurityAccessMask" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityDescriptorControl();
-	// "SetSecurityDescriptorControl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityDescriptorDacl();
-	// "SetSecurityDescriptorDacl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityDescriptorGroup();
-	// "SetSecurityDescriptorGroup" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityDescriptorOwner();
-	// "SetSecurityDescriptorOwner" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityDescriptorRMControl();
-	// "SetSecurityDescriptorRMControl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityDescriptorSacl();
-	// "SetSecurityDescriptorSacl" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityInfo();
-	// "SetSecurityInfo" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityInfoExA();
-	// "SetSecurityInfoExA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetSecurityInfoExW();
-	// "SetSecurityInfoExW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetServiceBits();
-	// "SetServiceBits" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetServiceObjectSecurity();
-	// "SetServiceObjectSecurity" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetServiceStatus();
-	// "SetServiceStatus" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetThreadToken();
-	// "SetThreadToken" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetTokenInformation();
-	// "SetTokenInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetTraceCallback();
-	// "SetTraceCallback" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetUserFileEncryptionKey();
-	// "SetUserFileEncryptionKey" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SetUserFileEncryptionKeyEx();
-	// "SetUserFileEncryptionKeyEx" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StartServiceA();
-	// "StartServiceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StartServiceCtrlDispatcherA();
-	// "StartServiceCtrlDispatcherA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StartServiceCtrlDispatcherW();
-	// "StartServiceCtrlDispatcherW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StartServiceW();
-	// "StartServiceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StartTraceA();
-	// "StartTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StartTraceW();
-	// "StartTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StopTraceA();
-	// "StopTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall StopTraceW();
-	// "StopTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction001();
-	// "SystemFunction001" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction002();
-	// "SystemFunction002" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction003();
-	// "SystemFunction003" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction004();
-	// "SystemFunction004" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction005();
-	// "SystemFunction005" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction006();
-	// "SystemFunction006" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction007();
-	// "SystemFunction007" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction008();
-	// "SystemFunction008" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction009();
-	// "SystemFunction009" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction010();
-	// "SystemFunction010" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction011();
-	// "SystemFunction011" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction012();
-	// "SystemFunction012" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction013();
-	// "SystemFunction013" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction014();
-	// "SystemFunction014" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction015();
-	// "SystemFunction015" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction016();
-	// "SystemFunction016" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction017();
-	// "SystemFunction017" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction018();
-	// "SystemFunction018" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction019();
-	// "SystemFunction019" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction020();
-	// "SystemFunction020" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction021();
-	// "SystemFunction021" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction022();
-	// "SystemFunction022" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction023();
-	// "SystemFunction023" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction024();
-	// "SystemFunction024" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction025();
-	// "SystemFunction025" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction026();
-	// "SystemFunction026" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction027();
-	// "SystemFunction027" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction028();
-	// "SystemFunction028" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction029();
-	// "SystemFunction029" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction030();
-	// "SystemFunction030" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction031();
-	// "SystemFunction031" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction032();
-	// "SystemFunction032" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction033();
-	// "SystemFunction033" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction034();
-	// "SystemFunction034" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction035();
-	// "SystemFunction035" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction036();
-	// "SystemFunction036" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction040();
-	// "SystemFunction040" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall SystemFunction041();
-	// "SystemFunction041" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TraceEvent();
-	// "TraceEvent" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TraceEventInstance();
-	// "TraceEventInstance" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TraceMessage();
-	// "TraceMessage" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TraceMessageVa();
-	// "TraceMessageVa" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TraceQueryInformation();
-	// "TraceQueryInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TraceSetInformation();
-	// "TraceSetInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TreeResetNamedSecurityInfoA();
-	// "TreeResetNamedSecurityInfoA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TreeResetNamedSecurityInfoW();
-	// "TreeResetNamedSecurityInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TreeSetNamedSecurityInfoA();
-	// "TreeSetNamedSecurityInfoA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TreeSetNamedSecurityInfoW();
-	// "TreeSetNamedSecurityInfoW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TrusteeAccessToObjectA();
-	// "TrusteeAccessToObjectA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall TrusteeAccessToObjectW();
-	// "TrusteeAccessToObjectW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UninstallApplication();
-	// "UninstallApplication" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UnlockServiceDatabase();
-	// "UnlockServiceDatabase" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UnregisterIdleTask();
-	// "UnregisterIdleTask" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UnregisterTraceGuids();
-	// "UnregisterTraceGuids" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UpdateTraceA();
-	// "UpdateTraceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UpdateTraceW();
-	// "UpdateTraceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UsePinForEncryptedFilesA();
-	// "UsePinForEncryptedFilesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall UsePinForEncryptedFilesW();
-	// "UsePinForEncryptedFilesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WaitServiceState();
-	// "WaitServiceState" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiCloseBlock();
-	// "WmiCloseBlock" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiDevInstToInstanceNameA();
-	// "WmiDevInstToInstanceNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiDevInstToInstanceNameW();
-	// "WmiDevInstToInstanceNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiEnumerateGuids();
-	// "WmiEnumerateGuids" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiExecuteMethodA();
-	// "WmiExecuteMethodA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiExecuteMethodW();
-	// "WmiExecuteMethodW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiFileHandleToInstanceNameA();
-	// "WmiFileHandleToInstanceNameA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiFileHandleToInstanceNameW();
-	// "WmiFileHandleToInstanceNameW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiFreeBuffer();
-	// "WmiFreeBuffer" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiMofEnumerateResourcesA();
-	// "WmiMofEnumerateResourcesA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiMofEnumerateResourcesW();
-	// "WmiMofEnumerateResourcesW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiNotificationRegistrationA();
-	// "WmiNotificationRegistrationA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiNotificationRegistrationW();
-	// "WmiNotificationRegistrationW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiOpenBlock();
-	// "WmiOpenBlock" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQueryAllDataA();
-	// "WmiQueryAllDataA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQueryAllDataMultipleA();
-	// "WmiQueryAllDataMultipleA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQueryAllDataMultipleW();
-	// "WmiQueryAllDataMultipleW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQueryAllDataW();
-	// "WmiQueryAllDataW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQueryGuidInformation();
-	// "WmiQueryGuidInformation" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQuerySingleInstanceA();
-	// "WmiQuerySingleInstanceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQuerySingleInstanceMultipleA();
-	// "WmiQuerySingleInstanceMultipleA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQuerySingleInstanceMultipleW();
-	// "WmiQuerySingleInstanceMultipleW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiQuerySingleInstanceW();
-	// "WmiQuerySingleInstanceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiReceiveNotificationsA();
-	// "WmiReceiveNotificationsA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiReceiveNotificationsW();
-	// "WmiReceiveNotificationsW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiSetSingleInstanceA();
-	// "WmiSetSingleInstanceA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiSetSingleInstanceW();
-	// "WmiSetSingleInstanceW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiSetSingleItemA();
-	// "WmiSetSingleItemA" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WmiSetSingleItemW();
-	// "WmiSetSingleItemW" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
-
-	// int __stdcall WriteEncryptedFileRaw();
-	// "WriteEncryptedFileRaw" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,
+	// "A_SHAFinal" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "A_SHAInit" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "A_SHAUpdate" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AbortSystemShutdownA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AbortSystemShutdownW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheck" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckAndAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckAndAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByType" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeAndAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeAndAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeResultList" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeResultListAndAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeResultListAndAuditAlarmByHandleA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeResultListAndAuditAlarmByHandleW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AccessCheckByTypeResultListAndAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAccessAllowedAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAccessAllowedAceEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAccessAllowedObjectAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAccessDeniedAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAccessDeniedAceEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAccessDeniedObjectAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAuditAccessAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAuditAccessAceEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddAuditAccessObjectAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddConditionalAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddMandatoryAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddUsersToEncryptedFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AddUsersToEncryptedFileEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AdjustTokenGroups" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AdjustTokenPrivileges" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AllocateAndInitializeSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AllocateLocallyUniqueId" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AreAllAccessesGranted" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AreAnyAccessesGranted" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditComputeEffectivePolicyBySid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditComputeEffectivePolicyByToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditEnumerateCategories" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditEnumeratePerUserPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditEnumerateSubCategories" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditFree" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditLookupCategoryGuidFromCategoryId" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditLookupCategoryIdFromCategoryGuid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditLookupCategoryNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditLookupCategoryNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditLookupSubCategoryNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditLookupSubCategoryNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditQueryGlobalSaclA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditQueryGlobalSaclW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditQueryPerUserPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditQuerySecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditQuerySystemPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditSetGlobalSaclA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditSetGlobalSaclW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditSetPerUserPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditSetSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "AuditSetSystemPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BackupEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BackupEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegCloseKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegCreateKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegDeleteKeyEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegDeleteValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegFlushKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegGetVersion" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegLoadKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegOpenKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegRestoreKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegSaveKeyEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegSetKeySecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegSetValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BaseRegUnLoadKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildExplicitAccessWithNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildExplicitAccessWithNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildImpersonateExplicitAccessWithNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildImpersonateExplicitAccessWithNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildImpersonateTrusteeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildImpersonateTrusteeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildSecurityDescriptorA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildSecurityDescriptorW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithObjectsAndNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithObjectsAndNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithObjectsAndSidA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithObjectsAndSidW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithSidA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "BuildTrusteeWithSidW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CancelOverlappedAccess" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ChangeServiceConfig2A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ChangeServiceConfig2W" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ChangeServiceConfigA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ChangeServiceConfigW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CheckForHiberboot" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CheckTokenMembership" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ClearEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ClearEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CloseCodeAuthzLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CloseEncryptedFileRaw" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CloseEventLog" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CloseServiceHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CloseThreadWaitChainSession" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CloseTrace" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CommandLineFromMsiDescriptor" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ComputeAccessTokenFromCodeAuthzLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ControlService" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ControlServiceExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ControlServiceExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ControlTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ControlTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertAccessToSecurityDescriptorA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertAccessToSecurityDescriptorW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSDToStringSDDomainW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSDToStringSDRootDomainA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSDToStringSDRootDomainW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSecurityDescriptorToAccessA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSecurityDescriptorToAccessNamedA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSecurityDescriptorToAccessNamedW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSecurityDescriptorToAccessW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSecurityDescriptorToStringSecurityDescriptorA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSecurityDescriptorToStringSecurityDescriptorW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSidToStringSidA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertSidToStringSidW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSDToSDDomainA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSDToSDDomainW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSDToSDRootDomainA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSDToSDRootDomainW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSecurityDescriptorToSecurityDescriptorA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSecurityDescriptorToSecurityDescriptorW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSidToSidA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertStringSidToSidW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ConvertToAutoInheritPrivateObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CopySid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateCodeAuthzLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreatePrivateObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreatePrivateObjectSecurityEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreatePrivateObjectSecurityWithMultipleInheritance" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateProcessAsUserA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateProcessAsUserW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateProcessWithLogonW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateProcessWithTokenW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateRestrictedToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateServiceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateServiceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateTraceInstanceId" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CreateWellKnownSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredBackupCredentials" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredDeleteA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredDeleteW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredEncryptAndMarshalBinaryBlob" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredEnumerateA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredEnumerateW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredFindBestCredentialA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredFindBestCredentialW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredFree" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredGetSessionTypes" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredGetTargetInfoA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredGetTargetInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredIsMarshaledCredentialA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredIsMarshaledCredentialW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredIsProtectedA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredIsProtectedW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredMarshalCredentialA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredMarshalCredentialW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredProfileLoaded" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredProfileLoadedEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredProfileUnloaded" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredProtectA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredProtectW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredReadA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredReadByTokenHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredReadDomainCredentialsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredReadDomainCredentialsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredReadW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredRenameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredRenameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredRestoreCredentials" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredUnmarshalCredentialA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredUnmarshalCredentialW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredUnprotectA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredUnprotectW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredWriteA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredWriteDomainCredentialsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredWriteDomainCredentialsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredWriteW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredpConvertCredential" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredpConvertOneCredentialSize" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredpConvertTargetInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredpDecodeCredential" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredpEncodeCredential" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CredpEncodeSecret" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptAcquireContextA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptAcquireContextW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptContextAddRef" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptCreateHash" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptDecrypt" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptDeriveKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptDestroyHash" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptDestroyKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptDuplicateHash" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptDuplicateKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptEncrypt" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptEnumProviderTypesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptEnumProviderTypesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptEnumProvidersA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptEnumProvidersW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptExportKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGenKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGenRandom" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGetDefaultProviderA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGetDefaultProviderW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGetHashParam" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGetKeyParam" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGetProvParam" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptGetUserKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptHashData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptHashSessionKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptImportKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptReleaseContext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetHashParam" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetKeyParam" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetProvParam" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetProviderA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetProviderExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetProviderExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSetProviderW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSignHashA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptSignHashW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptVerifySignatureA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CryptVerifySignatureW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "CveEventWrite" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DecryptFileA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DecryptFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DeleteAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DeleteService" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DeregisterEventSource" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DestroyPrivateObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DuplicateEncryptionInfoFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DuplicateToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "DuplicateTokenEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfBackupEventLogFileA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfBackupEventLogFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfChangeNotify" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfClearEventLogFileA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfClearEventLogFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfCloseEventLog" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfDeregisterEventSource" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfFlushEventLog" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfNumberOfRecords" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfOldestRecord" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfOpenBackupEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfOpenBackupEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfOpenEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfOpenEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfReadEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfReadEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfRegisterEventSourceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfRegisterEventSourceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfReportEventA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfReportEventAndSourceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ElfReportEventW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnableTrace" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnableTraceEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnableTraceEx2" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EncryptFileA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EncryptFileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EncryptedFileKeyInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EncryptionDisable" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumDependentServicesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumDependentServicesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumDynamicTimeZoneInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumServiceGroupW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumServicesStatusA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumServicesStatusExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumServicesStatusExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumServicesStatusW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateTraceGuids" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EnumerateTraceGuidsEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EqualDomainSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EqualPrefixSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EqualSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventAccessControl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventAccessQuery" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventAccessRemove" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventActivityIdControl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventEnabled" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventProviderEnabled" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventRegister" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventSetInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventUnregister" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventWrite" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventWriteEndScenario" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventWriteEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventWriteStartScenario" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventWriteString" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "EventWriteTransfer" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FileEncryptionStatusA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FileEncryptionStatusW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FindFirstFreeAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FlushEfsCache" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FlushTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FlushTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FreeEncryptedFileKeyInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FreeEncryptedFileMetadata" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FreeEncryptionCertificateHashList" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FreeInheritedFromArray" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "FreeSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAccessPermissionsForObjectA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAccessPermissionsForObjectW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAclInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAuditedPermissionsFromAclA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetAuditedPermissionsFromAclW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetCurrentHwProfileA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetCurrentHwProfileW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetDynamicTimeZoneInformationEffectiveYears" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetEffectiveRightsFromAclA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetEffectiveRightsFromAclW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetEncryptedFileMetadata" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetEventLogInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetExplicitEntriesFromAclA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetExplicitEntriesFromAclW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetFileSecurityA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetFileSecurityW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetInformationCodeAuthzLevelW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetInformationCodeAuthzPolicyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetInheritanceSourceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetInheritanceSourceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetKernelObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetLengthSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetLocalManagedApplicationData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetLocalManagedApplications" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetManagedApplicationCategories" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetManagedApplications" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetMultipleTrusteeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetMultipleTrusteeOperationA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetMultipleTrusteeOperationW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetMultipleTrusteeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetNamedSecurityInfoA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetNamedSecurityInfoExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetNamedSecurityInfoExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetNamedSecurityInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetNumberOfEventLogRecords" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetOldestEventLogRecord" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetOverlappedAccessResults" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetPrivateObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorControl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorDacl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorGroup" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorLength" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorOwner" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorRMControl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityDescriptorSacl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityInfoExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSecurityInfoExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetServiceDisplayNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetServiceDisplayNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetServiceKeyNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetServiceKeyNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSidIdentifierAuthority" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSidLengthRequired" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSidSubAuthority" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetSidSubAuthorityCount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetStringConditionFromBinary" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetThreadWaitChain" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTokenInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTraceEnableFlags" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTraceEnableLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTraceLoggerHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTrusteeFormA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTrusteeFormW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTrusteeNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTrusteeNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTrusteeTypeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetTrusteeTypeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetUserNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetUserNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "GetWindowsAccountDomainSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_QueryTagInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScGetCurrentGroupStateW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScIsSecurityProcess" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScPnPGetServiceName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScQueryServiceConfig" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScRegisterPreshutdownRestart" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScReparseServiceDatabase" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScSendPnPMessage" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScSendTSMessage" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScSetServiceBitsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScSetServiceBitsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "I_ScValidatePnPService" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IdentifyCodeAuthzLevelW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImpersonateAnonymousToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImpersonateLoggedOnUser" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImpersonateNamedPipeClient" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ImpersonateSelf" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitializeAcl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitializeSecurityDescriptor" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitializeSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitiateShutdownA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitiateShutdownW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitiateSystemShutdownA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitiateSystemShutdownExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitiateSystemShutdownExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InitiateSystemShutdownW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "InstallApplication" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsTextUnicode" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsTokenRestricted" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsTokenUntrusted" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsValidAcl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsValidRelativeSecurityDescriptor" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsValidSecurityDescriptor" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsValidSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "IsWellKnownSid" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LockServiceDatabase" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LogonUserA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LogonUserExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LogonUserExExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LogonUserExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LogonUserW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupAccountNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupAccountNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupAccountSidA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupAccountSidW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupPrivilegeDisplayNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupPrivilegeDisplayNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupPrivilegeNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupPrivilegeNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupPrivilegeValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupPrivilegeValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupSecurityDescriptorPartsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LookupSecurityDescriptorPartsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaAddAccountRights" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaAddPrivilegesToAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaClearAuditLog" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaClose" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaCreateAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaCreateSecret" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaCreateTrustedDomain" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaCreateTrustedDomainEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaDelete" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaDeleteTrustedDomain" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumerateAccountRights" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumerateAccounts" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumerateAccountsWithUserRight" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumeratePrivileges" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumeratePrivilegesOfAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumerateTrustedDomains" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaEnumerateTrustedDomainsEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaFreeMemory" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaGetAppliedCAPIDs" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaGetQuotasForAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaGetRemoteUserName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaGetSystemAccessAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaGetUserName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaICLookupNames" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaICLookupNamesWithCreds" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaICLookupSids" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaICLookupSidsWithCreds" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupNames" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupNames2" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupPrivilegeDisplayName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupPrivilegeName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupPrivilegeValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupSids" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaLookupSids2" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaManageSidNameMapping" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaNtStatusToWinError" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaOpenAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaOpenPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaOpenPolicySce" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaOpenSecret" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaOpenTrustedDomain" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaOpenTrustedDomainByName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryCAPs" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryDomainInformationPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryForestTrustInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryInfoTrustedDomain" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryInformationPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQuerySecret" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQuerySecurityObject" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryTrustedDomainInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaQueryTrustedDomainInfoByName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaRemoveAccountRights" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaRemovePrivilegesFromAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaRetrievePrivateData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetCAPs" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetDomainInformationPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetForestTrustInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetInformationPolicy" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetInformationTrustedDomain" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetQuotasForAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetSecret" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetSecurityObject" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetSystemAccessAccount" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetTrustedDomainInfoByName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaSetTrustedDomainInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "LsaStorePrivateData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MD4Final" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MD4Init" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MD4Update" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MD5Final" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MD5Init" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MD5Update" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MIDL_user_free_Ext" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MSChapSrvChangePassword" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MSChapSrvChangePassword2" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MakeAbsoluteSD" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MakeAbsoluteSD2" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MakeSelfRelativeSD" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "MapGenericMask" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "N/A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "NotifyBootConfigStatus" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "NotifyChangeEventLog" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "NotifyServiceStatusChange" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "NotifyServiceStatusChangeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "NotifyServiceStatusChangeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "NpGetUserName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectCloseAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectCloseAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectDeleteAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectDeleteAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectOpenAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectOpenAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectPrivilegeAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ObjectPrivilegeAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenBackupEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenBackupEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenEncryptedFileRawA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenEncryptedFileRawW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenProcessToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenSCManagerA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenSCManagerW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenServiceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenServiceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenThreadToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenThreadWaitChainSession" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OpenTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OperationEnd" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "OperationStart" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfAddCounters" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfCloseQueryHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfCreateInstance" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfDecrementULongCounterValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfDecrementULongLongCounterValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfDeleteCounters" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfDeleteInstance" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfEnumerateCounterSet" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfEnumerateCounterSetInstances" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfIncrementULongCounterValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfIncrementULongLongCounterValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfOpenQueryHandle" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfQueryCounterData" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfQueryCounterInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfQueryCounterSetRegistrationInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfQueryInstance" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfRegCloseKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfRegEnumKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfRegEnumValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfRegQueryInfoKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfRegQueryValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfRegSetValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfSetCounterRefValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfSetCounterSetInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfSetULongCounterValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfSetULongLongCounterValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfStartProvider" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfStartProviderEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PerfStopProvider" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PrivilegeCheck" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PrivilegedServiceAuditAlarmA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "PrivilegedServiceAuditAlarmW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ProcessIdleTasks" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ProcessIdleTasksW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ProcessTrace" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryAllTracesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryAllTracesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryLocalUserServiceName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryRecoveryAgentsOnEncryptedFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QuerySecurityAccessMask" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceConfig2A" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceConfig2W" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceConfigA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceConfigW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceDynamicInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceLockStatusA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceLockStatusW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceStatus" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryServiceStatusEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryUserServiceName" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "QueryUsersOnEncryptedFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ReadEncryptedFileRaw" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ReadEventLogA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ReadEventLogW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCloseKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegConnectRegistryA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegConnectRegistryExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegConnectRegistryExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegConnectRegistryW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCopyTreeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCopyTreeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCreateKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCreateKeyExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCreateKeyExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCreateKeyTransactedA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCreateKeyTransactedW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegCreateKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyTransactedA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyTransactedW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteTreeA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteTreeW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDeleteValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDisablePredefinedCache" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDisablePredefinedCacheEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegDisableReflectionKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnableReflectionKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnumKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnumKeyExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnumKeyExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnumKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnumValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegEnumValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegFlushKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegGetKeySecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegGetValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegGetValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegLoadAppKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegLoadAppKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegLoadKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegLoadKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegLoadMUIStringA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegLoadMUIStringW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegNotifyChangeKeyValue" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenCurrentUser" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenKeyExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenKeyExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenKeyTransactedA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenKeyTransactedW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOpenUserClassesRoot" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegOverridePredefKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryInfoKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryInfoKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryMultipleValuesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryMultipleValuesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryReflectionKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryValueExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryValueExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegQueryValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegRenameKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegReplaceKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegReplaceKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegRestoreKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegRestoreKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSaveKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSaveKeyExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSaveKeyExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSaveKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetKeySecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetKeyValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetKeyValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetValueA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetValueExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetValueExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegSetValueW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegUnLoadKeyA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegUnLoadKeyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterEventSourceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterEventSourceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterIdleTask" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterServiceCtrlHandlerA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterServiceCtrlHandlerExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterServiceCtrlHandlerExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterServiceCtrlHandlerW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterTraceGuidsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterTraceGuidsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RegisterWaitChainCOMCallback" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoteRegEnumKeyWrapper" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoteRegEnumValueWrapper" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoteRegQueryInfoKeyWrapper" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoteRegQueryValueWrapper" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoveTraceCallback" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RemoveUsersFromEncryptedFile" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ReportEventA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "ReportEventW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "RevertToSelf" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SafeBaseRegGetKeySecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferCloseLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferComputeTokenFromLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferCreateLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferGetLevelInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferGetPolicyInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferIdentifyLevel" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferRecordEventLogEntry" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferSetLevelInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferSetPolicyInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiChangeRegistryScope" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiCompareTokenLevels" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiIsDllAllowed" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiIsExecutableFileType" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiPopulateDefaultsInRegistry" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiRecordEventLogEntry" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SaferiSearchMatchingHashRules" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetAclInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEncryptedFileMetadata" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEntriesInAccessListA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEntriesInAccessListW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEntriesInAclA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEntriesInAclW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEntriesInAuditListA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetEntriesInAuditListW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetFileSecurityA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetFileSecurityW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetInformationCodeAuthzLevelW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetInformationCodeAuthzPolicyW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetKernelObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetNamedSecurityInfoA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetNamedSecurityInfoExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetNamedSecurityInfoExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetNamedSecurityInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetPrivateObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetPrivateObjectSecurityEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityAccessMask" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityDescriptorControl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityDescriptorDacl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityDescriptorGroup" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityDescriptorOwner" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityDescriptorRMControl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityDescriptorSacl" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityInfo" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityInfoExA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetSecurityInfoExW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetServiceBits" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetServiceObjectSecurity" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetServiceStatus" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetThreadToken" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetTokenInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetTraceCallback" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetUserFileEncryptionKey" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SetUserFileEncryptionKeyEx" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StartServiceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StartServiceCtrlDispatcherA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StartServiceCtrlDispatcherW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StartServiceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StartTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StartTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StopTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "StopTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction001" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction002" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction003" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction004" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction005" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction006" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction007" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction008" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction009" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction010" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction011" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction012" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction013" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction014" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction015" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction016" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction017" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction018" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction019" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction020" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction021" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction022" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction023" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction024" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction025" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction026" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction027" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction028" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction029" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction030" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction031" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction032" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction033" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction034" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction035" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction036" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction040" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "SystemFunction041" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TraceEvent" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TraceEventInstance" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TraceMessage" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TraceMessageVa" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TraceQueryInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TraceSetInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TreeResetNamedSecurityInfoA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TreeResetNamedSecurityInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TreeSetNamedSecurityInfoA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TreeSetNamedSecurityInfoW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TrusteeAccessToObjectA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "TrusteeAccessToObjectW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UninstallApplication" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UnlockServiceDatabase" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UnregisterIdleTask" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UnregisterTraceGuids" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UpdateTraceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UpdateTraceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UsePinForEncryptedFilesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "UsePinForEncryptedFilesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WaitServiceState" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiCloseBlock" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiDevInstToInstanceNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiDevInstToInstanceNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiEnumerateGuids" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiExecuteMethodA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiExecuteMethodW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiFileHandleToInstanceNameA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiFileHandleToInstanceNameW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiFreeBuffer" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiMofEnumerateResourcesA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiMofEnumerateResourcesW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiNotificationRegistrationA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiNotificationRegistrationW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiOpenBlock" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQueryAllDataA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQueryAllDataMultipleA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQueryAllDataMultipleW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQueryAllDataW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQueryGuidInformation" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQuerySingleInstanceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQuerySingleInstanceMultipleA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQuerySingleInstanceMultipleW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiQuerySingleInstanceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiReceiveNotificationsA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiReceiveNotificationsW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiSetSingleInstanceA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiSetSingleInstanceW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiSetSingleItemA" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WmiSetSingleItemW" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
+
+	// "WriteEncryptedFileRaw" : 
+	// [
+	//	wtypes.BOOL ,
+	//	[ 
+	//		 wtypes.HANDLE , // __in HANDLE hObject 
+	//	], 
+	//	{ abi : ffi.FFI_STDCALL }
+	// ],
 
 });
 module.exports = advapi32;
-
-
-

@@ -121,13 +121,26 @@ function OnReadComplete( error , filedata)
 
         for ( nLine = 0; nLine < LineArray.length; nLine++ )
         {
-            strText = sprintf('\t// int __stdcall %s();\r\n' , LineArray[nLine] );
+            // "CloseHandle" : 
+            // [
+            //      wtypes.BOOL ,
+            //      [
+            //          wtypes.HANDLE , // __in HANDLE hObject        
+            //      ],
+            //      {abi : ffi.FFI_STDCALL }
+            // ],
 
-            strText += sprintf(
-                '\t// "%s" :   [ wtypes.int , [ ] , {abi : ffi.FFI_STDCALL } ] ,\r\n\r\n' ,
-                LineArray[nLine] 
-            );
+            strText = sprintf('\t// "%s" : \r\n' ,LineArray[nLine] );
+            strText += sprintf('\t// [\r\n' );
+                strText += sprintf('\t//\twtypes.BOOL ,\r\n' );
+                strText += sprintf('\t//\t[ \r\n' );
+                    strText += sprintf('\t//\t\t wtypes.HANDLE , // __in HANDLE hObject \r\n' );
+                strText += sprintf('\t//\t], \r\n' );
+                strText += sprintf('\t//\t{ abi : ffi.FFI_STDCALL }\r\n' );
+            strText += sprintf('\t// ],\r\n' );
 
+            strText += '\r\n';
+    
             fs.appendFileSync( strResultFile , strText );
         }
 
