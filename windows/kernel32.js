@@ -48,23 +48,23 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "AddAtomA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AddAtomA" : 
+	 [
+		wtypes.ATOM ,
+		[ 
+			 wtypes.LPCSTR  // __in LPCSTR lpString 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AddAtomW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	"AddAtomW" : 
+	 [
+		wtypes.ATOM ,
+		[ 
+			 wtypes.LPCWSTR  // __in LPCWSTR lpString 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "AddConsoleAliasA" : 
 	// [
@@ -543,15 +543,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "BaseGetNamedObjectDirectory" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
 
+	 "BaseGetNamedObjectDirectory" : 
+	 [
+		wtypes.NTSTATUS ,
+		[ 
+			 wtypes.PHANDLE  // __out HANDLE* phDir 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
+	
 	// "BaseInitAppcompatCacheSupport" : 
 	// [
 	//	wtypes.BOOL ,
@@ -903,32 +904,35 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "Beep" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "Beep" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD  , // __in DWORD dwFreq 
+			 wtypes.DWORD   // __in DWORD dwDuration 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BeginUpdateResourceA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BeginUpdateResourceA" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR pFileName 
+			 wtypes.BOOL  // __in BOOL bDeleteExistingResources 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BeginUpdateResourceW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BeginUpdateResourceW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCSTR pFileName 
+			 wtypes.BOOL  // __in BOOL bDeleteExistingResources 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "BindIoCompletionCallback" : 
 	// [
@@ -975,23 +979,35 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CallNamedPipeA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallNamedPipeA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpNamedPipeName 
+			 wtypes.LPVOID , // __in LPVOID lpInBuffer 
+			 wtypes.DWORD , // __in DWORD nInBufferSize 
+			 wtypes.LPVOID , // __in LPVOID lpOutBuffer  
+			 wtypes.DWORD , // __in DWORD nOutBufferSize  
+			 wtypes.LPDWORD , // __in LPDWORD lpBytesRead  
+			 wtypes.DWORD   // __in DWORD nTimeOut  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CallNamedPipeW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallNamedPipeW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpNamedPipeName 
+			 wtypes.LPVOID , // __in LPVOID lpInBuffer 
+			 wtypes.DWORD , // __in DWORD nInBufferSize 
+			 wtypes.LPVOID , // __in LPVOID lpOutBuffer  
+			 wtypes.DWORD , // __in DWORD nOutBufferSize  
+			 wtypes.LPDWORD , // __in LPDWORD lpBytesRead  
+			 wtypes.DWORD   // __in DWORD nTimeOut 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CallbackMayRunLong" : 
 	// [
@@ -1011,14 +1027,14 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CancelIo" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CancelIo" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HANDLE  // __in HANDLE hFile 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CancelIoEx" : 
 	// [
@@ -1146,14 +1162,15 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CheckRemoteDebuggerPresent" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CheckRemoteDebuggerPresent" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HANDLE , // __in HANDLE hProcess 
+			 wtypes.PBOOL  // __out PBOOL pbDebuggerPresent 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CheckTokenCapability" : 
 	// [
@@ -1173,14 +1190,14 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "ClearCommBreak" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ClearCommBreak" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HANDLE  // __in HANDLE hFile 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "ClearCommError" : 
 	// [
@@ -1344,14 +1361,15 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CompareFileTime" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CompareFileTime" : 
+	 [
+		wtypes.LONG ,
+		[ 
+			 wtypes.LPFILETIME , // __in LPFILETIME lpFileTime1 
+			 wtypes.LPFILETIME  // __in LPFILETIME lpFileTime2
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CompareStringA" : 
 	// [
@@ -1497,14 +1515,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CopyFileA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyFileA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpExistingFileName 
+			 wtypes.LPCSTR , // __in LPCSTR lpNewFileName
+			 wtypes.BOOL  // __in BOOL bFailIfExists
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CopyFileExA" : 
 	// [
@@ -1542,14 +1562,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CopyFileW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyFileW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			wtypes.LPCWSTR , // __in LPCWSTR lpExistingFileName 
+			wtypes.LPCWSTR , // __in LPCWSTR lpNewFileName
+			wtypes.BOOL  // __in BOOL bFailIfExists
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CopyLZFile" : 
 	// [
@@ -1614,14 +1636,15 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateDirectoryA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateDirectoryA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpPathName  
+			 wtypes.LPSECURITY_ATTRIBUTES // __in LPSECURITY_ATTRIBUTES  lpSecurityAttributes  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateDirectoryExA" : 
 	// [
@@ -1659,14 +1682,15 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateDirectoryW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateDirectoryW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpPathName  
+			 wtypes.LPSECURITY_ATTRIBUTES // __in LPSECURITY_ATTRIBUTES  lpSecurityAttributes  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateEnclave" : 
 	// [
@@ -1677,14 +1701,17 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateEventA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateEventA" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in LPSECURITY_ATTRIBUTES lpEventAttributes 
+			 wtypes.BOOL , // __in BOOL bManualReset 
+			 wtypes.BOOL , // __in BOOL bInitialState 
+			 wtypes.LPCSTR , // __in LPCSTR lpName  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateEventExA" : 
 	// [
@@ -1704,14 +1731,17 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateEventW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateEventW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in LPSECURITY_ATTRIBUTES lpEventAttributes 
+			 wtypes.BOOL , // __in BOOL bManualReset 
+			 wtypes.BOOL , // __in BOOL bInitialState 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpName  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateFiber" : 
 	// [
@@ -1740,23 +1770,34 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateFileA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateFileA" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpFileName  
+			 wtypes.DWORD , // __in DWORD dwDesiredAccess   
+			 wtypes.DWORD , // __in DWORD dwShareMode   
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPCSTR lpSecurityAttributes   
+			 wtypes.DWORD , // __in DWORD dwCreationDisposition  
+			 wtypes.DWORD , // __in DWORD dwFlagsAndAttributes  
+			 wtypes.HANDLE   // __in_opt HANDLE hTemplateFile
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateFileMappingA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateFileMappingA" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.HANDLE , // __in HANDLE hFile  
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpAttributes   
+			 wtypes.DWORD , // __in DWORD flProtect   
+			 wtypes.DWORD , // __in DWORD dwMaximumSizeHigh   
+			 wtypes.DWORD , // __in DWORD dwMaximumSizeLow  
+			 wtypes.LPCSTR  // __in_opt LPCSTR lpName   
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateFileMappingFromApp" : 
 	// [
@@ -1785,14 +1826,19 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateFileMappingW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateFileMappingW" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.HANDLE , // __in HANDLE hFile  
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpAttributes   
+			 wtypes.DWORD , // __in DWORD flProtect   
+			 wtypes.DWORD , // __in DWORD dwMaximumSizeHigh   
+			 wtypes.DWORD , // __in DWORD dwMaximumSizeLow  
+			 wtypes.LPCWSTR  // __in_opt LPCWSTR lpName  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateFileTransactedA" : 
 	// [
@@ -1827,14 +1873,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 		{ abi : ffi.FFI_STDCALL }
 	 ],
 
-	// "CreateHardLinkA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateHardLinkA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpFileName 
+			 wtypes.LPCSTR , // __in LPCSTR lpExistingFileName  
+			 wtypes.LPSECURITY_ATTRIBUTES  // __in LPSECURITY_ATTRIBUTES lpSecurityAttributes   must be NULL.
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateHardLinkTransactedA" : 
 	// [
@@ -1854,14 +1902,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateHardLinkW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateHardLinkW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpFileName 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpExistingFileName  
+			 wtypes.LPSECURITY_ATTRIBUTES  // __in LPSECURITY_ATTRIBUTES lpSecurityAttributes   must be NULL.
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateIoCompletionPort" : 
 	// [
@@ -1926,14 +1976,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateMutexA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateMutexA" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpMutexAttributes  
+			 wtypes.BOOL , // __in BOOL bInitialOwner   
+			 wtypes.LPCSTR // __in_opt LPCSTR lpName   
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateMutexExA" : 
 	// [
@@ -1953,14 +2005,16 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateMutexW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateMutexW" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpMutexAttributes  
+			 wtypes.BOOL , // __in BOOL bInitialOwner   
+			 wtypes.LPCWSTR // __in_opt LPCWSTR lpName  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateNamedPipeA" : 
 	// [
@@ -2007,14 +2061,25 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateProcessA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	/*
+	 "CreateProcessA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCSTR , // __in_opt LPCSTR lpApplicationName 
+			 wtypes.LPCSTR , // __inout_opt LPCSTR lpCommandLine   
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpProcessAttributes  
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpThreadAttributes  
+			 wtypes.BOOL , // __in BOOL bInheritHandles  
+			 wtypes.DWORD  , // __in DWORD  dwCreationFlags  
+			 wtypes.LPVOID , // __in_opt LPVOID lpEnvironment  
+			 wtypes.LPCSTR , // __in_opt LPCSTR lpCurrentDirectory  
+			 wtypes.LPSTARTUPINFO , // __in LPSTARTUPINFO lpStartupInfo  
+			 wtypes.LPPROCESS_INFORMATION  // __out LPPROCESS_INFORMATION lpProcessInformation   
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
+	 */
 
 	// "CreateProcessAsUserA" : 
 	// [
@@ -2051,15 +2116,25 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 	//	], 
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
-
-	// "CreateProcessW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	/*
+	 "CreateProcessW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPCWSTR , // __in_opt LPCWSTR lpApplicationName 
+			 wtypes.LPCWSTR , // __inout_opt LPCWSTR lpCommandLine   
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpProcessAttributes  
+			 wtypes.LPSECURITY_ATTRIBUTES , // __in_opt LPSECURITY_ATTRIBUTES lpThreadAttributes  
+			 wtypes.BOOL , // __in BOOL bInheritHandles  
+			 wtypes.DWORD  , // __in DWORD  dwCreationFlags  
+			 wtypes.LPVOID , // __in_opt LPVOID lpEnvironment  
+			 wtypes.LPCWSTR , // __in_opt LPCWSTR lpCurrentDirectory  
+			 wtypes.LPSTARTUPINFO , // __in LPSTARTUPINFO lpStartupInfo  
+			 wtypes.LPPROCESS_INFORMATION  // __out LPPROCESS_INFORMATION lpProcessInformation 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
+	 */
 
 	// "CreateRemoteThread" : 
 	// [
@@ -14580,3 +14655,4 @@ function test_CreateFileW()
 	return 0;
 }
 
+test_CreateFileW();
