@@ -11,41 +11,47 @@ const iconv = require('iconv-lite');
 
 var user32 = ffi.Library( "user32.dll" ,
 {
-	// "ActivateKeyboardLayout" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ActivateKeyboardLayout" : 
+	 [
+		wtypes.HKL ,
+		[ 
+			 wtypes.HKL , // __in HKL hkl 
+			 wtypes.UINT  // __in UINT Flags 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
+	
+	 "AddClipboardFormatListener" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND  // __in HWND hWnd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AddClipboardFormatListener" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AdjustWindowRect" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPRECT , // __in LPRECT lPRect 
+			 wtypes.DWORD , // __in DWORD dwStyle 
+			 wtypes.BOOL // __in BOOL bMenu 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AdjustWindowRect" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
-
-	// "AdjustWindowRectEx" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AdjustWindowRectEx" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPRECT , // __in LPRECT lPRect 
+			 wtypes.DWORD , // __in DWORD dwStyle 
+			 wtypes.BOOL , // __in BOOL bMenu 
+			 wtypes.DWORD  // __in DWORD dwExStyle
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "AdjustWindowRectExForDpi" : 
 	// [
@@ -74,50 +80,55 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "AllowSetForegroundWindow" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AllowSetForegroundWindow" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD  // __in DWORD dwProcessId 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AnimateWindow" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AnimateWindow" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.DWORD , // __in DWORD dwTime 
+			 wtypes.DWORD  // __in DWORD dwFlags 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AnyPopup" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AnyPopup" : 
+	 [
+		wtypes.BOOL , [ ], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AppendMenuA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AppendMenuA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HMENU , // __in HMENU hMenu 
+			 wtypes.UINT , // __in UINT uFlags
+			 wtypes.UINT_PTR , // __in UINT_PTR uIDNewItem
+			 wtypes.LPCSTR  // __in LPCSTR lpNewItem
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AppendMenuW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AppendMenuW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HMENU , // __in HMENU hMenu 
+			 wtypes.UINT , // __in UINT uFlags
+			 wtypes.UINT_PTR , // __in UINT_PTR uIDNewItem
+			 wtypes.LPCWSTR  // __in LPCWSTR lpNewItem
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "AreDpiAwarenessContextsEqual" : 
 	// [
@@ -128,104 +139,129 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "ArrangeIconicWindows" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ArrangeIconicWindows" : 
+	 [
+		wtypes.UINT ,
+		[ 
+			 wtypes.HWND  // __in HWND hWnd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "AttachThreadInput" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "AttachThreadInput" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idAttach 
+			 wtypes.DWORD , // __in DWORD idAttachTo  
+			 wtypes.BOOL  // __in BOOL fAttach  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BeginDeferWindowPos" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BeginDeferWindowPos" : 
+	 [
+		wtypes.HDWP ,
+		[ 
+			 wtypes.int  // __in int nNumWindows 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BeginPaint" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BeginPaint" : 
+	 [
+		wtypes.HDC ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.LPPAINTSTRUCT  // __out LPPAINTSTRUCT lpPaint 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BlockInput" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BlockInput" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.BOOL , // __in BOOL fBlockIt 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BringWindowToTop" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BringWindowToTop" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND  // __in HWND hWnd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BroadcastSystemMessage" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BroadcastSystemMessage" : 
+	 [
+		wtypes.long ,
+		[ 
+			 wtypes.DWORD  , // __in DWORD  dwFlags 
+			 wtypes.LPDWORD  , // __in LPDWORD  lpdwRecipients 
+			 wtypes.UINT  , // __in UINT  uiMessage 
+			 wtypes.WPARAM  , // __in WPARAM  wParam 
+			 wtypes.LPARAM  // __in LPARAM  lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BroadcastSystemMessageA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BroadcastSystemMessageA" : 
+	 [
+		wtypes.long ,
+		[ 
+			 wtypes.DWORD  , // __in DWORD  dwFlags 
+			 wtypes.LPDWORD  , // __in LPDWORD  lpdwRecipients 
+			 wtypes.UINT  , // __in UINT  uiMessage 
+			 wtypes.WPARAM  , // __in WPARAM  wParam 
+			 wtypes.LPARAM  // __in LPARAM  lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BroadcastSystemMessageExA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BroadcastSystemMessageExA" : 
+	 [
+		wtypes.long ,
+		[ 
+			 wtypes.DWORD  , // __in DWORD  dwFlags 
+			 wtypes.LPDWORD  , // __in LPDWORD  lpdwRecipients 
+			 wtypes.UINT  , // __in UINT  uiMessage 
+			 wtypes.WPARAM  , // __in WPARAM  wParam 
+			 wtypes.LPARAM , // __in LPARAM  lParam 
+			 wtypes.PBSMINFO   // __in PBSMINFO  pBSMInfo
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	],
 
-	// "BroadcastSystemMessageExW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BroadcastSystemMessageExW" : 
+	 [
+		wtypes.long ,
+		[ 
+			 wtypes.DWORD  , // __in DWORD  dwFlags 
+			 wtypes.LPDWORD  , // __in LPDWORD  lpdwRecipients 
+			 wtypes.UINT  , // __in UINT  uiMessage 
+			 wtypes.WPARAM  , // __in WPARAM  wParam 
+			 wtypes.LPARAM , // __in LPARAM  lParam 
+			 wtypes.PBSMINFO   // __in PBSMINFO  pBSMInfo
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "BroadcastSystemMessageW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "BroadcastSystemMessageW" : 
+	 [
+		wtypes.long ,
+		[ 
+			 wtypes.DWORD  , // __in DWORD  dwFlags 
+			 wtypes.LPDWORD  , // __in LPDWORD  lpdwRecipients 
+			 wtypes.UINT  , // __in UINT  uiMessage 
+			 wtypes.WPARAM  , // __in WPARAM  wParam 
+			 wtypes.LPARAM  // __in LPARAM  lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "BuildReasonArray" : 
 	// [
@@ -254,59 +290,73 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CallMsgFilter" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallMsgFilter" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPMSG  , // __in LPMSG  lpMsg 
+			 wtypes.int   // __in int  nCode 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CallMsgFilterA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallMsgFilterA" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPMSG  , // __in LPMSG  lpMsg 
+			 wtypes.int   // __in int  nCode 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CallMsgFilterW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallMsgFilterW" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPMSG  , // __in LPMSG  lpMsg 
+			 wtypes.int   // __in int  nCode 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CallNextHookEx" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallNextHookEx" : 
+	 [
+		wtypes.LRESULT ,
+		[ 
+			 wtypes.HHOOK , // __in HHOOK hhk 
+			 wtypes.int , // __in int nCode 
+			 wtypes.WPARAM , // __in WPARAM wParam 
+			 wtypes.LPARAM , // __in LPARAM lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CallWindowProcA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallWindowProcA" : 
+	 [
+		wtypes.LRESULT ,
+		[ 
+			 wtypes.WNDPROC , // __in WNDPROC lpPrevWndFunc 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.UINT , // __in UINT nMsg 
+			 wtypes.WPARAM , // __in WPARAM wParam 
+			 wtypes.LPARAM  // __in LPARAM lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CallWindowProcW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CallWindowProcW" : 
+	 [
+		wtypes.LRESULT ,
+		[ 
+			 wtypes.WNDPROC , // __in WNDPROC lpPrevWndFunc 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.UINT , // __in UINT nMsg 
+			 wtypes.WPARAM , // __in WPARAM wParam 
+			 wtypes.LPARAM  // __in LPARAM lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CancelShutdown" : 
 	// [
@@ -326,23 +376,28 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CascadeWindows" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CascadeWindows" : 
+	 [
+		wtypes.WORD ,
+		[ 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.UINT , // __in UINT wHow 
+			 wtypes.LPRECT , // __in LPRECT lpRect 
+			 wtypes.UINT , // __in UINT cKids 
+			 wtypes.LPHWND  // __in LPHWND lpKids 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "ChangeClipboardChain" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ChangeClipboardChain" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWndRemove 
+			 wtypes.HWND  // __in HWND hWndNewNext 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "ChangeDisplaySettingsA" : 
 	// [
@@ -398,14 +453,15 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "ChangeWindowMessageFilter" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ChangeWindowMessageFilter" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.UINT , // __in UINT nMessage 
+			 wtypes.DWORD  // __in DWORD dwFlag 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "ChangeWindowMessageFilterEx" : 
 	// [
@@ -452,14 +508,14 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CharNextA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CharNextA" : 
+	 [
+		wtypes.LPSTR ,
+		[ 
+			 wtypes.LPSTR  // __in LPSTR lpsz 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CharNextExA" : 
 	// [
@@ -470,14 +526,14 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CharNextW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CharNextW" : 
+	 [
+		wtypes.LPWSTR ,
+		[ 
+			 wtypes.LPWSTR  // __in LPWSTR lpsz 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CharPrevA" : 
 	// [
@@ -587,32 +643,40 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CheckDlgButton" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CheckDlgButton" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hDlg 
+			 wtypes.int , // __in int nIDButton 
+			 wtypes.UINT , // __in UINT uCheck 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CheckMenuItem" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CheckMenuItem" : 
+	 [
+		wtypes.DWORD ,
+		[ 
+			 wtypes.HMENU , // __in HMENU hMenu 
+			 wtypes.UINT , // __in UINT uIDCheckItem 
+			 wtypes.UINT  // __in UINT uCheck 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CheckMenuRadioItem" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CheckMenuRadioItem" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HMENU , // __in HMENU hMenu 
+			 wtypes.UINT , // __in UINT idFirst 
+			 wtypes.UINT , // __in UINT idLast 
+			 wtypes.UINT , // __in UINT idCheck 
+			 wtypes.UINT  // __in UINT uFlags 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CheckProcessForClipboardAccess" : 
 	// [
@@ -632,14 +696,17 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CheckRadioButton" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CheckRadioButton" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hDlg 
+			 wtypes.int , // __in int nIDFirstButton
+			 wtypes.int , // __in int nIDLastButton
+			 wtypes.int // __in int nIDCheckButton
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CheckWindowThreadDesktop" : 
 	// [
@@ -650,23 +717,26 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "ChildWindowFromPoint" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ChildWindowFromPoint" : 
+	 [
+		wtypes.HWND ,
+		[ 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.POINT  // __in POINT point 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "ChildWindowFromPointEx" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ChildWindowFromPointEx" : 
+	 [
+		wtypes.HWND ,
+		[ 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.POINT,  // __in POINT point 
+			 wtypes.UINT  // __in UINT uFlags 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CliImmSetHotKey" : 
 	// [
@@ -686,41 +756,39 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "ClientToScreen" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ClientToScreen" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.LPPOINT  // __in LPPOINT lpPoint 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "ClipCursor" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "ClipCursor" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPRECT  // __in LPRECT lpRect 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CloseClipboard" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CloseClipboard" : 
+	 [
+		wtypes.BOOL ,[ ], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CloseDesktop" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CloseDesktop" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HDESK  // __in HDESK hDesktop 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CloseGestureInfoHandle" : 
 	// [
@@ -740,23 +808,23 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CloseWindow" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CloseWindow" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND  // __in HWND hWnd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CloseWindowStation" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CloseWindowStation" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWINSTA  // __in HWINSTA hWinsta 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "ConsoleControl" : 
 	// [
@@ -776,95 +844,112 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CopyAcceleratorTableA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyAcceleratorTableA" : 
+	 [
+		wtypes.int ,
+		[ 
+			 wtypes.HACCEL,  // __in HACCEL hAccelSrc 
+			 wtypes.HACCEL,  // __in HACCEL lpAccelDst
+			 wtypes.int  // __in int cAccelEntries
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CopyAcceleratorTableW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyAcceleratorTableW" : 
+	 [
+		wtypes.int ,
+		[ 
+			 wtypes.HACCEL,  // __in HACCEL hAccelSrc 
+			 wtypes.HACCEL,  // __in HACCEL lpAccelDst
+			 wtypes.int  // __in int cAccelEntries
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CopyIcon" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyIcon" : 
+	 [
+		wtypes.HICON ,
+		[ 
+			 wtypes.HICON  // __in HICON hIcon 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CopyImage" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyImage" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.HANDLE , // __in HANDLE hImage ,
+			 wtypes.UINT , // __in UINT uType 
+			 wtypes.int , // __in int cxDesired 
+			 wtypes.int , // __in int cyDesired 
+			 wtypes.UINT  // __in UINT fuFlags 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CopyRect" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CopyRect" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.LPRECT , // __in LPRECT lprcDst
+			 wtypes.LPRECT  // __in LPRECT lprcSrc  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CountClipboardFormats" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CountClipboardFormats" : 
+	 [
+		wtypes.int , [ ], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateAcceleratorTableA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateAcceleratorTableA" : 
+	 [
+		wtypes.HACCEL ,
+		[ 
+			 wtypes.LPACCEL , // __in LPACCEL lpAccl 
+			 wtypes.int  // __in int cEntries 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateAcceleratorTableW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateAcceleratorTableW" : 
+	 [
+		wtypes.HACCEL ,
+		[ 
+			 wtypes.LPACCEL , // __in LPACCEL lpAccl 
+			 wtypes.int  // __in int cEntries 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateCaret" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateCaret" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.HBITMAP , // __in HBITMAP hBitmap 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateCursor" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateCursor" : 
+	 [
+		wtypes.HCURSOR  ,
+		[ 
+			 wtypes.HINSTANCE , // __in HINSTANCE hInstance 
+			 wtypes.int , // __in int xHotSpot 
+			 wtypes.int , // __in int yHotSpot 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+			 wtypes.LPVOID , // __in LPVOID pvANDPlane 
+			 wtypes.LPVOID  // __in LPVOID pvXORPlane 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateDCompositionHwndTarget" : 
 	// [
@@ -875,41 +960,65 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateDesktopA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateDesktopA" : 
+	 [
+		wtypes.HDESK ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpszDesktop  
+			 wtypes.LPCSTR , // __reserved LPCSTR lpszDevice   
+			 wtypes.LPDEVMODEA , // __reserved LPDEVMODEA pDevmode   
+			 wtypes.DWORD , // __in DWORD dwFlags   
+			 wtypes.ACCESS_MASK , // __in ACCESS_MASK dwDesiredAccess   
+			 wtypes.LPSECURITY_ATTRIBUTES  // __in_opt LPSECURITY_ATTRIBUTES lpsa   
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateDesktopExA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateDesktopExA" : 
+	 [
+		wtypes.HDESK ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpszDesktop  
+			 wtypes.LPCSTR , // __reserved LPCSTR lpszDevice   
+			 wtypes.LPDEVMODEA , // __reserved LPDEVMODEA pDevmode   
+			 wtypes.DWORD , // __in DWORD dwFlags   
+			 wtypes.ACCESS_MASK , // __in ACCESS_MASK dwDesiredAccess   
+			 wtypes.LPSECURITY_ATTRIBUTES ,  // __in_opt LPSECURITY_ATTRIBUTES lpsa   
+			 wtypes.ULONG , // __in ULONG dwFlags 
+			 wtypes.PVOID  // __reserved PVOID  pv
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateDesktopExW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateDesktopExW" : 
+	 [
+		wtypes.HDESK ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpszDesktop  
+			 wtypes.LPCWSTR , // __reserved LPCWSTR lpszDevice   
+			 wtypes.LPDEVMODEW , // __reserved LPDEVMODEW pDevmode   
+			 wtypes.DWORD , // __in DWORD dwFlags   
+			 wtypes.ACCESS_MASK , // __in ACCESS_MASK dwDesiredAccess   
+			 wtypes.LPSECURITY_ATTRIBUTES ,  // __in_opt LPSECURITY_ATTRIBUTES lpsa   
+			 wtypes.ULONG , // __in ULONG dwFlags 
+			 wtypes.PVOID  // __reserved PVOID  pv
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateDesktopW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateDesktopW" : 
+	 [
+		wtypes.HDESK ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpszDesktop  
+			 wtypes.LPCWSTR , // __reserved LPCWSTR lpszDevice   
+			 wtypes.LPDEVMODEW , // __reserved LPDEVMODEW pDevmode   
+			 wtypes.DWORD , // __in DWORD dwFlags   
+			 wtypes.ACCESS_MASK , // __in ACCESS_MASK dwDesiredAccess   
+			 wtypes.LPSECURITY_ATTRIBUTES  // __in_opt LPSECURITY_ATTRIBUTES lpsa   
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateDialogIndirectParamA" : 
 	// [
@@ -956,14 +1065,20 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateIcon" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateIcon" : 
+	 [
+		wtypes.HICON ,
+		[ 
+			 wtypes.HINSTANCE , // __in HINSTANCE hInstance 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+			 wtypes.BYTE , // __in BYTE cPlanes 
+			 wtypes.BYTE , // __in BYTE cBitsPixel 
+			 wtypes.LPBYTE , // __in LPBYTE lpbANDbits 
+			 wtypes.LPBYTE  // __in LPBYTE lpbXORbits 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateIconFromResource" : 
 	// [
@@ -983,50 +1098,62 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateIconIndirect" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateIconIndirect" : 
+	 [
+		wtypes.HICON ,
+		[ 
+			 wtypes.LPICONINFO   // __in PICONINFO lpIconinfo 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateMDIWindowA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateMDIWindowA" : 
+	 [
+		wtypes.HWND ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpClassName 
+			 wtypes.LPCSTR , // __in LPCSTR lpWindowName 
+			 wtypes.DWORD  , // __in DWORD  lpClassName 
+			 wtypes.int , // __in int X 
+			 wtypes.int , // __in int Y 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.HINSTANCE  , // __in HINSTANCE  hInstance 
+			 wtypes.LPARAM   // __in LPARAM  lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateMDIWindowW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateMDIWindowW" : 
+	 [
+		wtypes.HWND ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpClassName 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpWindowName 
+			 wtypes.DWORD  , // __in DWORD  lpClassName 
+			 wtypes.int , // __in int X 
+			 wtypes.int , // __in int Y 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.HINSTANCE  , // __in HINSTANCE  hInstance 
+			 wtypes.LPARAM   // __in LPARAM  lParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateMenu" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateMenu" : 
+	 [
+		wtypes.HMENU , [], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreatePopupMenu" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreatePopupMenu" : 
+	 [
+		wtypes.HMENU ,[ ], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateSystemThreads" : 
 	// [
@@ -1037,23 +1164,45 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "CreateWindowExA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateWindowExA" : 
+	 [
+		wtypes.HWND ,
+		[ 
+			 wtypes.DWORD , // __in DWORD dwExStyle 
+			 wtypes.LPCSTR , // __in LPCSTR lpClassName 
+			 wtypes.LPCSTR , // __in LPCSTR lpWindowName 
+			 wtypes.DWORD , // __in DWORD dwStyle 
+			 wtypes.int , // __in int x
+			 wtypes.int , // __in int y 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.HMENU , // __in HMENU hMenu 
+			 wtypes.HINSTANCE , // __in HINSTANCE dwExStyle 
+			 wtypes.LPVOID  // __in LPVOID lpParam 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateWindowExW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateWindowExW" : 
+	 [
+		wtypes.HWND ,
+		[ 
+			 wtypes.DWORD , // __in DWORD dwExStyle 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpClassName 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpWindowName 
+			 wtypes.DWORD , // __in DWORD dwStyle 
+			 wtypes.int , // __in int x
+			 wtypes.int , // __in int y 
+			 wtypes.int , // __in int nWidth 
+			 wtypes.int , // __in int nHeight 
+			 wtypes.HWND , // __in HWND hWndParent 
+			 wtypes.HMENU , // __in HMENU hMenu 
+			 wtypes.HINSTANCE , // __in HINSTANCE dwExStyle 
+			 wtypes.LPVOID  // __in LPVOID lpParam 
+		],  
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreateWindowInBand" : 
 	// [
@@ -1118,158 +1267,195 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "DdeAbandonTransaction" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeAbandonTransaction" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HCONV  , // __in HCONV  hConv 
+			 wtypes.DWORD  // __in DWORD idTransaction 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeAccessData" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeAccessData" : 
+	 [
+		wtypes.LPBYTE ,
+		[ 
+			 wtypes.HDDEDATA  , // __in HDDEDATA  hData 
+			 wtypes.LPDWORD    // __in LPDWORD   pcbDataSize 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeAddData" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeAddData" : 
+	 [
+		wtypes.HDDEDATA ,
+		[ 
+			 wtypes.HDDEDATA , // __in HDDEDATA hData 
+			 wtypes.LPBYTE , // __in LPBYTE pSrc 
+			 wtypes.DWORD , // __in DWORD nSize 
+			 wtypes.DWORD  // __in DWORD nOffset 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeClientTransaction" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeClientTransaction" : 
+	 [
+		wtypes.HDDEDATA  ,
+		[ 
+			 wtypes.LPBYTE , // __in LPBYTE pData 
+			 wtypes.DWORD , // __in DWORD cbData 
+			 wtypes.HCONV , // __in HCONV hConv 
+			 wtypes.HSZ , // __in HSZ hszItem 
+			 wtypes.UINT , // __in UINT wFmt 
+			 wtypes.UINT , // __in UINT nType 
+			 wtypes.DWORD , // __in DWORD dwTimeout 
+			 wtypes.LPDWORD  // __out LPDWORD pdwResult 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeCmpStringHandles" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeCmpStringHandles" : 
+	 [
+		wtypes.int ,
+		[ 
+			 wtypes.HSZ , // __in HSZ hsz1 
+			 wtypes.HSZ  // __in HSZ hsz2 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeConnect" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeConnect" : 
+	 [
+		wtypes.HCONV ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HSZ , // __in HSZ hszService 
+			 wtypes.HSZ , // __in HSZ hszTopic 
+			 wtypes.PCONVCONTEXT  // __in PCONVCONTEXT pCC 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeConnectList" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeConnectList" : 
+	 [
+		wtypes.HCONVLIST ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HSZ , // __in HSZ hszService 
+			 wtypes.HSZ , // __in HSZ hszTopic 
+			 wtypes.HCONVLIST , // __in HCONVLIST hConvList 
+			 wtypes.PCONVCONTEXT   // __inPCONVCONTEXT DWORD pCC 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeCreateDataHandle" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeCreateDataHandle" : 
+	 [
+		wtypes.HDDEDATA  ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.LPBYTE , // __in LPBYTE pSrc 
+			 wtypes.DWORD , // __in DWORD nSize 
+			 wtypes.DWORD , // __in DWORD nOffset 
+			 wtypes.HSZ , // __in HSZ hszItem 
+			 wtypes.UINT , // __in UINT wFmt 
+			 wtypes.UINT  // __in UINT afCmd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeCreateStringHandleA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeCreateStringHandleA" : 
+	 [
+		wtypes.HSZ ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.LPSTR , // __in LPSTR psz 
+			 wtypes.int  // __in int iCodePage 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeCreateStringHandleW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeCreateStringHandleW" : 
+	 [
+		wtypes.HSZ ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst
+			 wtypes.LPSTR , // __in LPSTR psz 
+			 wtypes.int  // __in int iCodePage  
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeDisconnect" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	"DdeDisconnect" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HCONV  // __in HCONV hConv 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeDisconnectList" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeDisconnectList" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HCONVLIST  // __in HCONVLIST hConvList 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeEnableCallback" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeEnableCallback" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HCONV , // __in HCONV hConv 
+			 wtypes.UINT  // __in UINT wCmd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeFreeDataHandle" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeFreeDataHandle" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HDDEDATA  // __in HDDEDATA hData 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeFreeStringHandle" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeFreeStringHandle" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HSZ  // __in HSZ hsz 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeGetData" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeGetData" : 
+	 [
+		wtypes.DWORD ,
+		[ 
+			 wtypes.HDDEDATA , // __in HDDEDATA hData 
+			 wtypes.LPBYTE , // __in LPBYTE hData 
+			 wtypes.DWORD , // __in DWORD cbMax 
+			 wtypes.DWORD  // __in DWORD cbOff 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeGetLastError" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	"DdeGetLastError" : 
+	 [
+		wtypes.UINT ,
+		[ 
+			 wtypes.DWORD  // __in DWORD idInst 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "DdeGetQualityOfService" : 
 	// [
@@ -1280,68 +1466,82 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "DdeImpersonateClient" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeImpersonateClient" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HCONV  // __in HCONV hConv 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeInitializeA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeInitializeA" : 
+	 [
+		wtypes.UINT ,
+		[ 
+			 wtypes.LPDWORD , // __in LPDWORD pidInst 
+			 wtypes.PFNCALLBACK , // __in PFNCALLBACK pfnCallback 
+			 wtypes.DWORD , // __in DWORD afCmd 
+			 wtypes.DWORD  // __in DWORD ulRes 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeInitializeW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeInitializeW" : 
+	 [
+		wtypes.UINT ,
+		[ 
+			 wtypes.LPDWORD , // __in LPDWORD pidInst 
+			 wtypes.PFNCALLBACK , // __in PFNCALLBACK pfnCallback 
+			 wtypes.DWORD , // __in DWORD afCmd 
+			 wtypes.DWORD  // __in DWORD ulRes 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeKeepStringHandle" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeKeepStringHandle" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HSZ  // __in HSZ hsz 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeNameService" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeNameService" : 
+	 [
+		wtypes.HDDEDATA ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.UINT , // __in UINT hsz1 
+			 wtypes.UINT , // __in UINT hsz2 
+			 wtypes.UINT  // __in UINT afCmd 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdePostAdvise" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdePostAdvise" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.DWORD , // __in DWORD idInst 
+			 wtypes.HSZ , // __in HSZ hszTopic 
+			 wtypes.HSZ  // __in HSZ hszItem 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "DdeQueryConvInfo" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "DdeQueryConvInfo" : 
+	 [
+		wtypes.UINT ,
+		[ 
+			 wtypes.HCONV , // __in HCONV hConv 
+			 wtypes.DWORD , // __in DWORD idTransaction 
+			 wtypes.PCONVINFO   // __in PCONVINFO pConvInfo 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "DdeQueryNextServer" : 
 	// [

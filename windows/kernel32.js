@@ -2016,23 +2016,37 @@ var kernel32 = ffi.Library( "kernel32.dll" ,
 		{ abi : ffi.FFI_STDCALL }
 	 ],
 
-	// "CreateNamedPipeA" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateNamedPipeA" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPCSTR , // __in LPCSTR lpName
+			 wtypes.DWORD , // __in DWORD dwOpenMode 
+			 wtypes.DWORD , // __in DWORD dwPipeMode 
+			 wtypes.DWORD , // __in DWORD nMaxInstance 
+			 wtypes.DWORD , // __in DWORD nOutBufferSize
+			 wtypes.DWORD , // __in DWORD nInBufferSize 
+			 wtypes.DWORD , // __in DWORD nDefaultTimeout 
+			 wtypes.LPSECURITY_ATTRIBUTES  // __in_opt LPSECURITY_ATTRIBUTES lpSecurityAttributes 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "CreateNamedPipeW" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "CreateNamedPipeW" : 
+	 [
+		wtypes.HANDLE ,
+		[ 
+			 wtypes.LPCWSTR , // __in LPCWSTR lpName
+			 wtypes.DWORD , // __in DWORD dwOpenMode 
+			 wtypes.DWORD , // __in DWORD dwPipeMode 
+			 wtypes.DWORD , // __in DWORD nMaxInstance 
+			 wtypes.DWORD , // __in DWORD nOutBufferSize
+			 wtypes.DWORD , // __in DWORD nInBufferSize 
+			 wtypes.DWORD , // __in DWORD nDefaultTimeout 
+			 wtypes.LPSECURITY_ATTRIBUTES  // __in_opt LPSECURITY_ATTRIBUTES lpSecurityAttributes 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "CreatePipe" : 
 	// [
@@ -14655,4 +14669,3 @@ function test_CreateFileW()
 	return 0;
 }
 
-test_CreateFileW();
