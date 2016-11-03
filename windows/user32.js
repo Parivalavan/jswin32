@@ -2430,23 +2430,24 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "EnableWindow" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "EnableWindow" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.BOOL   // __in BOOL  bEnable 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "EndDeferWindowPos" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "EndDeferWindowPos" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HDWP  // __in HDWP hWinPosInfo 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "EndDeferWindowPosEx" : 
 	// [
@@ -2457,41 +2458,43 @@ var user32 = ffi.Library( "user32.dll" ,
 	//	{ abi : ffi.FFI_STDCALL }
 	// ],
 
-	// "EndDialog" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "EndDialog" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hDlg 
+			 wtypes.INT_PTR  // __in INT_PTR nResult 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "EndMenu" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "EndMenu" : 
+	 [
+		wtypes.BOOL ,
+		[], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "EndPaint" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "EndPaint" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.LPPAINTSTRUCT   // __in LPPAINTSTRUCT lpPaint
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
-	// "EndTask" : 
-	// [
-	//	wtypes.BOOL ,
-	//	[ 
-	//		 wtypes.HANDLE , // __in HANDLE hObject 
-	//	], 
-	//	{ abi : ffi.FFI_STDCALL }
-	// ],
+	 "EndTask" : 
+	 [
+		wtypes.BOOL ,
+		[ 
+			 wtypes.HWND , // __in HWND hWnd 
+			 wtypes.BOOL  , // __in BOOL fShutDown 
+			 wtypes.BOOL  , // __in BOOL  fForce 
+		], 
+		{ abi : ffi.FFI_STDCALL }
+	 ],
 
 	// "EnterReaderModeHelper" : 
 	// [
